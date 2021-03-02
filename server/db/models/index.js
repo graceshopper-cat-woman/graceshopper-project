@@ -1,7 +1,7 @@
 const User = require('./user')
 const Mug = require('./mug')
 const Order = require('./order')
-const CartItem = require('./CartItem')
+
 const db = require('./')
 
 /**
@@ -10,7 +10,6 @@ const db = require('./')
  *
  *    BlogPost.belongsTo(User)
  */
-
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -19,13 +18,11 @@ const db = require('./')
  */
 
 //many-to-many between Mug and Order
-Mug.belongsToMany(Order, {through: CartItem})
-Order.belongsToMany(Mug, {through: CartItem})
-
-//one-to-one between User and CartItem
-User.hasOne(CartItem)
-CartItem.belongsTo(User)
-
+// Mug.belongsToMany(User, {through: Order})
+// Order.belongsToMany(Mug, {through: Order})
+// //one-to-one between User and CartItem
+// User.hasOne(CartItem)
+// CartItem.belongsTo(User)
 //one-to-many between User and Order
 User.hasMany(Order)
 Order.belongsTo(User)
@@ -34,5 +31,6 @@ module.exports = {
   User,
   Mug,
   Order,
-  CartItem
+  db
+ 
 }
