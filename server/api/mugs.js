@@ -5,10 +5,8 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const mugs = await Mug.findAll()
-    if (!mugs) {
-      res.send('No mugs found')
-    }
-    res.send(mugs)
+
+    res.json(mugs)
   } catch (error) {
     next(error)
   }
