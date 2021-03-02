@@ -6,7 +6,10 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   },
   password: {
     type: Sequelize.STRING,
@@ -26,6 +29,51 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
+  shippingStreet: {
+    type: Sequelize.STRING
+  },
+  shippingState: {
+    type: Sequelize.STRING
+  },
+  shippingCity: {
+    type: Sequelize.STRING
+  },
+  shippingZip: {
+    type: Sequelize.STRING,
+    validate: {
+      len: [5],
+      isNumeric: true
+    }
+  },
+  billingStreet: {
+    type: Sequelize.STRING
+  },
+  billingState: {
+    type: Sequelize.STRING
+  },
+  billingCity: {
+    type: Sequelize.STRING
+  },
+  billingZip: {
+    type: Sequelize.STRING,
+    validate: {
+      len: [5],
+      isNumeric: true
+    }
   }
 })
 

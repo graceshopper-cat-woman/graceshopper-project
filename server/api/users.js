@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order, Cart} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -8,17 +8,28 @@ router.get('/', async (req, res, next) => {
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'email']
+      attributes: ['id', 'email', 'admin']
     })
-    res.json(users)
+    //only send data if the user is authorized to view the content
+    if (req.body.admin) {
+      res.json(users)
+    } else {
+      res.status(401).send('Role not authorized to view this data')
+    }
   } catch (err) {
     next(err)
   }
 })
 
+//GET single User & order history
 router.get('/:userId', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.userId)
+    const user = await User.findOne({
+      where: {userId: req.params.id},
+      include: Order,
+      Cart
+    })
+
     res.send(user)
   } catch (error) {
     next(error)
