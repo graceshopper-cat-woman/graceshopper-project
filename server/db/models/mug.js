@@ -16,7 +16,7 @@ const Mug = db.define('mug', {
     defaultValue: ''
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   color: {

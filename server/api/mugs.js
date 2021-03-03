@@ -8,7 +8,6 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const mugs = await Mug.findAll()
-
     res.json(mugs)
   } catch (error) {
     next(error)
@@ -29,7 +28,7 @@ router.get('/:mugId', async (req, res, next) => {
 })
 
 // DELETE /api/mugs/:mugId
-router.delete('/:mugId', adminsOnly, async (req, res, next) => {
+router.delete('/:mugId', async (req, res, next) => {
   try {
     const mug = await Mug.findByPk(req.params.mugId)
     if (!mug) {

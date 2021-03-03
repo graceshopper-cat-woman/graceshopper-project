@@ -5,7 +5,7 @@ const usersOnly = require('../utils/usersOnly')
 module.exports = router
 
 // GET /api/users/
-router.get('/', adminsOnly, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
