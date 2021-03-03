@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, MugOrder} = require('../db/models')
+const {User, Order, Mug, MugOrder} = require('../db/models')
 const adminsOnly = require('../utils/adminsOnly')
 const usersOnly = require('../utils/usersOnly')
 module.exports = router
@@ -25,7 +25,7 @@ router.get('/', adminsOnly, async (req, res, next) => {
   }
 })
 
-//GET single User & order history
+// GET single User & order history
 // GET /api/users/:userId
 router.get('/:userId', usersOnly, async (req, res, next) => {
   try {
@@ -40,6 +40,25 @@ router.get('/:userId', usersOnly, async (req, res, next) => {
     })
 
     res.send(user)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// GET single user's orders
+// GET /api/users/:userId/orders
+router.get('/:userId/orders', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({
+      where: {
+        userId: req.params.userId
+      },
+      include: {model: Mug}
+    })
+    if (!orders) {
+      res.send('No orders found on server')
+    }
+    res.send(orders)
   } catch (error) {
     next(error)
   }
