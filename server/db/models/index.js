@@ -1,7 +1,7 @@
 const User = require('./user')
 const Mug = require('./mug')
 const Order = require('./order')
-
+const MugOrder = require('./mugOrder')
 const db = require('./')
 
 /**
@@ -18,11 +18,9 @@ const db = require('./')
  */
 
 //many-to-many between Mug and Order
-// Mug.belongsToMany(User, {through: Order})
-// Order.belongsToMany(Mug, {through: Order})
-// //one-to-one between User and CartItem
-// User.hasOne(CartItem)
-// CartItem.belongsTo(User)
+Mug.belongsToMany(User, {through: MugOrder})
+Order.belongsToMany(Mug, {through: MugOrder})
+
 //one-to-many between User and Order
 User.hasMany(Order)
 Order.belongsTo(User)
@@ -31,6 +29,6 @@ module.exports = {
   User,
   Mug,
   Order,
+  MugOrder,
   db
- 
 }

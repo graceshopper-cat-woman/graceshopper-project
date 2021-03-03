@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Mug, Order} = require('../server/db/models')
+const {User, Mug, Order, MugOrder} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -59,21 +59,17 @@ async function seed() {
 
   const orders = [
     {
-      number: 123,
-      shippingStatus: 'shipped',
-      mugId: buddies.id
+      number: 123
       // userId: Lauryn.id,
     },
     {
       number: 357,
-      shippingStatus: 'processing',
-      mugId: peteTheRabbit.id
+      orderStatus: 'processing'
       // userId: Hatibe.id,
     },
     {
       number: 34,
-      shippingStatus: 'delivered',
-      mugId: smelly.id
+      orderStatus: 'delivered'
       // userId: Traci.id,
     }
   ]
@@ -81,6 +77,7 @@ async function seed() {
   //bulk create orders in database
   const [orderOne, orderTwo, orderThree] = await Order.bulkCreate(orders)
   console.log('Seeded Orders')
+
   //sample users
   const users = [
     {
@@ -88,8 +85,8 @@ async function seed() {
       lastName: 'Kim',
       email: 'lauryn@email.com',
       password: 'lauryn1122',
-      isAdmin: true,
-      orderId: orderOne.id
+      isAdmin: true
+      // orderId: orderOne.id
     },
     {
       firstName: 'Hatibe',
@@ -125,6 +122,28 @@ async function seed() {
   //bulk create users in database
   const [Lauryn, Hatibe, Ari, Traci] = await User.bulkCreate(users)
   console.log('Seeded Users')
+
+  //assign orders to users
+  await Lauryn.addOrder(orderOne)
+  await Hatibe.setOrders(orderTwo)
+  await Ari.setOrders(orderThree)
+
+  //assigning mugs to orders
+  const mugOrderOne = {
+    mugId: smelly.id,
+    orderId: orderTwo.id,
+    price: smelly.price,
+    quantity: 20
+  }
+
+  const mugOrderTwo = {
+    mugId: pumpkin.id,
+    orderId: orderOne.id,
+    price: pumpkin.price,
+    quantity: 4
+  }
+
+  await MugOrder.create(mugOrderOne)
 }
 
 // We've separated the `seed` function from the `runSeed` function.
