@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {Order, Mug} = require('../db/models')
 
-//GET all orders
+//GET /api/orders
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({include: 'userId', Mug})

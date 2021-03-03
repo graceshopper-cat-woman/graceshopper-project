@@ -4,6 +4,7 @@ const adminsOnly = require('../utils/adminsOnly')
 const usersOnly = require('../utils/usersOnly')
 module.exports = router
 
+// GET /api/users/
 router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -25,7 +26,8 @@ router.get('/', adminsOnly, async (req, res, next) => {
 })
 
 //GET single User & order history
-router.get('/:userId', async (req, res, next) => {
+// GET /api/users/:userId
+router.get('/:userId', usersOnly, async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {id: req.params.userId},
