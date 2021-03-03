@@ -9,6 +9,11 @@ const getMugs = mugs => ({
   mugs
 })
 
+const getSingleMug = mug => ({
+  type: GET_SINGLE_MUG,
+  mug
+})
+
 //THUNK CREATOR
 export const fetchMugs = () => {
   return async dispatch => {
@@ -21,6 +26,16 @@ export const fetchMugs = () => {
   }
 }
 
+export const fetchMug = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/mugs/${id}`)
+      dispatch(getSingleMug(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 //INITIAL STATE
 let initialState = []
 
@@ -28,7 +43,9 @@ let initialState = []
 export default function mugReducer(state = initialState, action) {
   switch (action.type) {
     case GET_MUGS:
-      return [...state, action.mugs]
+      return action.mugs
+    case GET_SINGLE_MUG:
+      return action.mug
     default:
       return state
   }
