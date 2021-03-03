@@ -8,6 +8,7 @@ class AllMugs extends Component {
     this.props.loadMugs()
   }
   render() {
+    console.log(this.props)
     if (this.props.mugs === undefined) {
       return (
         <div>
@@ -24,6 +25,11 @@ class AllMugs extends Component {
               <h2>{mug.name}</h2>
             </Link>
             <h2>${mug.price}</h2>
+            <button type="button">Add To Cart</button>
+            <form>
+              <label htmlFor="quantity">Quantity:</label>
+              <input type="number" id="quantity" name="quantity" min="1" />
+            </form>
           </div>
         ))}
       </div>

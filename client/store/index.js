@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import userReducer from './user'
 import mugReducer from './mug'
+import singleMugReducer from './singleMug'
 
 const reducer = combineReducers({
   user: userReducer,
-  mugs: mugReducer
+  mugs: mugReducer,
+  mug: singleMugReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchMug} from '../store/mug'
+import {fetchMug} from '../store/singleMug'
 import {Link} from 'react-router-dom'
 
 class SingleMug extends Component {
   componentDidMount() {
     console.log('SINGLE MUG COMPONENT DID MOUNT')
-
     this.props.loadMug(this.props.match.params.mugId)
   }
   render() {
-    console.log('SINGLE MUG PROPS -->', this.props)
+    console.log(this.props)
     const mug = this.props.mug || {}
     if (!mug) {
       return <div>Loading...</div>
@@ -21,8 +20,13 @@ class SingleMug extends Component {
           <img src={mug.imageUrl} alt={mug.name} />
           <span>{mug.name}</span>
           <span>{mug.description}</span>
-          <span>{mug.size}</span>
-          <span>{mug.price}</span>
+          <span>{mug.size} oz.</span>
+          <span>${mug.price}</span>
+          <button type="button">Add To Cart</button>
+          <form>
+            <label htmlFor="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" />
+          </form>
         </div>
       </div>
     )
