@@ -187,7 +187,7 @@ async function seed() {
   await users[4].setOrders(orders.slice(9, 12))
   await users[5].setOrders(orders.slice(12, 17))
 
-  //assigning mugs to orders
+  //sample MugOrders
   const mugOrders = [
     {
       mugId: mugs[0].id,
@@ -241,6 +241,7 @@ async function seed() {
     }
   ]
 
+  //assign orders to mugs
   //await mugs[2].setOrders(orders[1])
   //await mugs[1].setOrders(orders.slice(2,4))
   //await mugs[2].setOrders(orders.slice(4,6))
@@ -265,6 +266,7 @@ async function seed() {
     })
   } */
 
+  //bulk create MugOrders
   await MugOrder.bulkCreate(mugOrders)
   console.log('Seeded MugOrders')
 }
