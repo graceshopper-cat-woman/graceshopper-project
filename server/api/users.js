@@ -5,7 +5,7 @@ const usersOnly = require('../utils/usersOnly')
 module.exports = router
 
 // GET /api/users/
-router.get('/', async (req, res, next) => {
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
@@ -47,7 +47,7 @@ router.get('/:userId', usersOnly, async (req, res, next) => {
 
 // GET single user's orders
 // GET /api/users/:userId/orders
-router.get('/:userId/orders', async (req, res, next) => {
+router.get('/:userId/orders', usersOnly, async (req, res, next) => {
   try {
     const orders = await Order.findAll({
       where: {

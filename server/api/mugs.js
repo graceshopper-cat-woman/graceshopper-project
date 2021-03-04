@@ -28,7 +28,7 @@ router.get('/:mugId', async (req, res, next) => {
 })
 
 // DELETE /api/mugs/:mugId
-router.delete('/:mugId', async (req, res, next) => {
+router.delete('/:mugId', adminsOnly, async (req, res, next) => {
   try {
     const mug = await Mug.findByPk(req.params.mugId)
     if (!mug) {
