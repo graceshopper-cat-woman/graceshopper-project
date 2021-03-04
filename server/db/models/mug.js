@@ -13,10 +13,10 @@ const Mug = db.define('mug', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: 'https://dummyimage.com/300x300/000/fff'
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   color: {
