@@ -17,6 +17,8 @@ async function seed() {
   const mugs = [
     {
       name: 'Pumpkin',
+      imageUrl:
+        'https://assets.pbimgs.com/pbimgs/rk/images/dp/wcm/202105/0007/halloween-stoneware-dinnerware-collection-o.jpg',
       description:
         'Carved of stoneware and finished in a modern matte glaze, this mug-sized pumpkin makes a festive holder for ginger beer, warm apple cider and other fall favorites',
       price: 15.0,
@@ -26,6 +28,8 @@ async function seed() {
     },
     {
       name: 'Pete the Rabbit',
+      imageUrl:
+        'https://assets.pbimgs.com/pbimgs/rk/images/dp/wcm/202047/0002/peter-rabbit-stoneware-mugs-o.jpg',
       description:
         'Bring the beloved once-upon-a-time tale to your table with the Peter Rabbit™ Collection. Each nostalgic design comes from the whimsical, imaginative drawings of famed illustrator and children’s storyteller Beatrix Potter™, making for the sweetest of springtime celebrations.',
       price: 16.0,
@@ -35,6 +39,8 @@ async function seed() {
     },
     {
       name: 'Buddies Central Perk',
+      imageUrl:
+        'https://assets.pbimgs.com/pbimgs/rk/images/dp/wcm/202109/0893/friends-central-perk-mug-o.jpg',
       description:
         "In celebration of the show's 25th anniversary, we teamed up with our Buddies to create a special collection for fans everywhere. Sip your favorite morning brew from this Gunther-approved mug, which will make you feel like you're in a cozy coffee shop.",
       price: 19.5,
@@ -44,6 +50,8 @@ async function seed() {
     },
     {
       name: 'Smelly Cat',
+      imageUrl:
+        'https://assets.pbimgs.com/pbimgs/rk/images/dp/wcm/202044/0048/friends-smelly-cat-mug-o.jpg',
       description:
         'A scent-sational gift for any Friends lover on your holiday list, this quirky mug features a line from Phoebe’s iconic ballad. (Warning: It may inspire a singalong.)',
       price: 18.5,
