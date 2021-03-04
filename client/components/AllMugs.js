@@ -22,7 +22,7 @@ class AllMugs extends Component {
           {this.props.mugs.map(mug => (
             <div className="productCard" key={mug.id}>
               <Link className="productStyle" to={`/mugs/${mug.id}`}>
-                <img alt={mug.name} src={mug.imageUrl} />
+                <img id="productPhoto" alt={mug.name} src={mug.imageUrl} />
                 <h3 className="productStyle">{mug.name}</h3>
               </Link>
               <h4 className="productStyle">${mug.price}</h4>
