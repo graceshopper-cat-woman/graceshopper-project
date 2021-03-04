@@ -11,27 +11,31 @@ class AllMugs extends Component {
     console.log(this.props)
     if (this.props.mugs === undefined) {
       return (
-        <div>
+        <div className="pageContainer">
           <h2>Loading...</h2>
         </div>
       )
     }
     return (
-      <div>
-        {this.props.mugs.map(mug => (
-          <div key={mug.id}>
-            <Link to={`/mugs/${mug.id}`}>
-              <img alt={mug.name} src={mug.imageUrl} />
-              <h2>{mug.name}</h2>
-            </Link>
-            <h2>${mug.price}</h2>
-            <button type="button">Add To Cart</button>
-            <form>
-              <label htmlFor="quantity">Quantity:</label>
-              <input type="number" id="quantity" name="quantity" min="1" />
-            </form>
-          </div>
-        ))}
+      <div className="pageContainer">
+        <div className="productContainer">
+          {this.props.mugs.map(mug => (
+            <div className="productCard" key={mug.id}>
+              <Link className="productStyle" to={`/mugs/${mug.id}`}>
+                <img alt={mug.name} src={mug.imageUrl} />
+                <h3 className="productStyle">{mug.name}</h3>
+              </Link>
+              <h4 className="productStyle">${mug.price}</h4>
+              <form>
+                <label htmlFor="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" />
+              </form>
+              <button className="productButton" type="button">
+                Add To Cart
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
