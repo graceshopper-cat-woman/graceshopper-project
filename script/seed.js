@@ -8,14 +8,6 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  // const users = await Promise.all([
-  //   User.create({email: 'cody@email.com', password: '123'}),
-  //   User.create({email: 'murphy@email.com', password: '123'})
-  // ])
-
-  // console.log(`seeded ${users.length} users`)
-  // console.log(`seeded successfully`)
-
   //sample mugs
   const mugArr = [
     {
@@ -141,7 +133,6 @@ async function seed() {
   ]
 
   //bulk create mugs in database
-  //const [pumpkin, peteTheRabbit, buddies, smelly, coffee, blue, earth, lemon, stone, classic, trevor, reindeer] = await Mug.bulkCreate(mugs)
   const mugs = await Mug.bulkCreate(mugArr)
   console.log('Seeded Mugs')
 
@@ -250,10 +241,6 @@ async function seed() {
     }
   ]
 
-  await MugOrder.bulkCreate(mugOrders)
-  console.log('Seeded MugOrders')
-
-  //assign orders to mugs
   //await mugs[2].setOrders(orders[1])
   //await mugs[1].setOrders(orders.slice(2,4))
   //await mugs[2].setOrders(orders.slice(4,6))
@@ -275,12 +262,11 @@ async function seed() {
   for (let i = 0; i < mugOrders.length; i++) {
     await mugOrders[i].update({
       quantity: Math.floor(Math.random() * 20),
-      price: i * 10
     })
   } */
 
-  //await MugOrder.bulkCreate(mugOrders)
-  //  console.log('Seeded MugOrders')
+  await MugOrder.bulkCreate(mugOrders)
+  console.log('Seeded MugOrders')
 }
 
 // We've separated the `seed` function from the `runSeed` function.
