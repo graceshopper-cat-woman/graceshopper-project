@@ -15,20 +15,24 @@ class SingleMug extends Component {
       return <div>Loading...</div>
     }
     return (
-      <div>
-        <div>
-          <img src={mug.imageUrl} alt={mug.name} />
-          <span>{mug.name}</span>
-          <span>{mug.description}</span>
-          <span>{mug.size} oz.</span>
-          <span>${mug.price}</span>
-          <button type="button">Add To Cart</button>
-          <form>
-            <label htmlFor="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" />
-          </form>
+      <>
+        <div className="singleProductContainer">
+          <div className="singleProductImage">
+            <img src={mug.imageUrl} alt={mug.name} />
+          </div>
+          <div className="singleProductDescription">
+            <h3 className="productStyle">{mug.name}</h3>
+            <p>{mug.description}</p>
+            <p>{mug.size} oz.</p>
+            <p>${mug.price}</p>
+            <form>
+              <label htmlFor="quantity">Quantity:</label>
+              <input type="number" id="quantity" name="quantity" min="1" />
+            </form>
+            <button type="button">Add To Cart</button>
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 }
