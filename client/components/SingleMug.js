@@ -1,15 +1,36 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMug} from '../store/singleMug'
+import {addToCart} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 class SingleMug extends Component {
+  constructor() {
+    super()
+    this.setPrice = this.setPrice.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      quantity: 0
+    }
+  }
   componentDidMount() {
-    console.log('SINGLE MUG COMPONENT DID MOUNT')
     this.props.loadMug(this.props.match.params.mugId)
   }
+  setPrice(number) {
+    return (number / 100).toFixed(2)
+  }
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+  handleSubmit(evt) {
+    evt.preventDefault()
+    this.props.addToCart(this.props.mug.id, parseInt(this.state.quantity))
+    this.setState({quantity: 0})
+  }
   render() {
-    console.log(this.props)
     const mug = this.props.mug || {}
     if (!mug) {
       return <div>Loading...</div>
@@ -24,12 +45,19 @@ class SingleMug extends Component {
             <h3 className="productStyle">{mug.name}</h3>
             <p>{mug.description}</p>
             <p>{mug.size} oz.</p>
-            <p>${mug.price}</p>
-            <form>
+            <p>${this.setPrice(mug.price)}</p>
+            <form onSubmit={this.handleSubmit}>
               <label htmlFor="quantity">Quantity:</label>
-              <input type="number" id="quantity" name="quantity" min="1" />
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                value={this.state.quantity}
+                min="1"
+                onChange={this.handleChange}
+              />
+              <button type="submit">Add To Cart</button>
             </form>
-            <button type="button">Add To Cart</button>
           </div>
         </div>
       </>
@@ -42,7 +70,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadMug: id => dispatch(fetchMug(id))
+  loadMug: id => dispatch(fetchMug(id)),
+  addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMug)
