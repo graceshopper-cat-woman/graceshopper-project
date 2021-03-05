@@ -4,10 +4,11 @@ const usersOnly = require('../utils/usersOnly')
 module.exports = router
 
 // GET cart
-// GET /api/carts
+// GET /api/carts/
 router.get('/', async (req, res, next) => {
   try {
     let order
+    //user cart
     if (req.user) {
       order = await Order.findOne({
         where: {
@@ -18,6 +19,7 @@ router.get('/', async (req, res, next) => {
           model: Mug
         }
       })
+      //guest cart
     } else if (req.session.guestCart) {
       order = await Order.findOne({
         where: {
@@ -31,6 +33,7 @@ router.get('/', async (req, res, next) => {
     if (!order) {
       res.send('Cart is empty')
     } else {
+      //send all cart items
       res.send(order.mugs)
     }
   } catch (error) {
@@ -38,46 +41,71 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//add a Mug to cart
-// POST /api/carts/
-router.post('/', async (req, res, next) => {
+// add a Mug TO cart
+// PUT /api/carts/
+router.put('/', async (req, res, next) => {
   try {
+    let order
+    //user cart
     if (req.user) {
-      const order = await Order.findOrCreate({
+      order = await Order.findOrCreate({
         where: {
           userId: req.user.id,
           orderStatus: 'inCart'
+        },
+        include: {
+          model: Mug
         }
       })
-      //check if item exists in cart (and increment quantity), else create and return new item
-      const newItem = await MugOrder.create({
+      //guest cart
+    } else if (req.session.guestCart) {
+      order = await Order.findOne({
+        where: {
+          id: req.session.guestCart,
+          orderStatus: 'inCart'
+        },
+        include: {
+          model: Mug
+        }
+      })
+    } else {
+      order = await Order.create({
+        where: {
+          orderStatus: 'inCart'
+        },
+        include: {
+          model: Mug
+        }
+      })
+      req.session.guestCart = order.id
+    }
+    // define mug and check if it exists in cart
+    const mugToAdd = await MugOrder.findOne({
+      where: {
+        orderId: order.id,
+        mugId: req.body.mugId
+      }
+    })
+    if (mugToAdd) {
+      //if mug exists, update the quantity
+      await mugToAdd.update({quantity: mugToAdd.quantity + req.body.quantity})
+    } else {
+      //else, add to cart
+      await MugOrder.create({
         quantity: req.body.quantity,
         mugId: req.body.mugId,
         orderId: order.id
       })
-      res.send(newItem)
-    } else {
-      let newOrder
-      const order = await Order.findOne({
-        where: {
-          id: newOrder.id,
-          orderStatus: 'inCart'
-        }
-      })
-      if (!order) {
-        newOrder = await Order.create({
-          where: {
-            orderStatus: 'inCart'
-          }
-        })
-        req.session.guestCart = newOrder.id
-      }
-      //session store for guest cart
     }
+    //send all cart items
+    res.send(order.mugs)
   } catch (error) {
     next(error)
   }
 })
 
+//increment/decrement a product IN cart
+// PUT api/carts
+
 //remove a product from cart
-//increment/decrement a product in cart
+// DELETE /api/carts/

@@ -2,24 +2,17 @@ const router = require('express').Router()
 const {User, Order, Mug, MugOrder} = require('../db/models')
 const adminsOnly = require('../utils/adminsOnly')
 const usersOnly = require('../utils/usersOnly')
+const adminsOrUsers = require('../utils/adminsOrUsers')
 module.exports = router
 
 // GET /api/users/
 router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email', 'isAdmin']
+      attributes: ['id', 'firstName', 'lastName', 'email', 'isAdmin']
     })
     //only send data if the user is authorized to view the content
     res.json(users)
-    // if (req.body.isAdmin) {
-    // } else {
-    //   res.status(401).send('Role not authorized to view this data')
-    // }
-    console.log('REQ.USER', req.user)
   } catch (err) {
     next(err)
   }
@@ -27,31 +20,26 @@ router.get('/', adminsOnly, async (req, res, next) => {
 
 // GET single User & order history
 // GET /api/users/:userId
-router.get('/:userId', usersOnly, async (req, res, next) => {
+router.get('/:userId', adminsOrUsers, async (req, res, next) => {
   try {
     const user = await User.findOne({
-      where: {id: req.params.userId},
-      include: {
-        model: Order,
-        where: {
-          userId: req.params.userId
-        }
-      }
+      attributes: ['id', 'firstName', 'lastName', 'email', 'isAdmin'],
+      where: {id: req.params.userId}
     })
-
     res.send(user)
   } catch (error) {
     next(error)
   }
 })
 
-// GET single user's orders
+// GET single user's submitted orders
 // GET /api/users/:userId/orders
-router.get('/:userId/orders', usersOnly, async (req, res, next) => {
+router.get('/:userId/orders', adminsOrUsers, async (req, res, next) => {
   try {
     const orders = await Order.findAll({
       where: {
-        userId: req.params.userId
+        userId: req.params.userId,
+        orderStatus: ['processing', 'shipped', 'delivered']
       },
       include: {model: Mug}
     })
