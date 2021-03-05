@@ -30,9 +30,7 @@ class AllMugs extends Component {
                 <label htmlFor="quantity">Quantity:</label>
                 <input type="number" id="quantity" name="quantity" min="1" />
               </form>
-              <button className="productButton" type="button">
-                Add To Cart
-              </button>
+              <button type="button">Add To Cart</button>
             </div>
           ))}
         </div>
