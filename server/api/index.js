@@ -6,6 +6,8 @@ router.use('/carts', require('./carts'))
 
 router.use('/mugs', require('./mugs'))
 
+router.use('/carts', require('./carts'))
+
 router.use((req, res, next) => {
   const error = new Error('Not Found')
   error.status = 404
