@@ -97,17 +97,17 @@ router.put('/', async (req, res, next) => {
       })
     }
     //send all cart items
-    res.send(order.mugs)
+    res.status(201).send(order.mugs)
   } catch (error) {
     next(error)
   }
 })
 
 // increment/decrement a product IN cart
-// PUT api/carts
+// PUT api/carts (status 201)
 
-// remove a product from cart
-// DELETE /api/carts/
+// remove a product completely from cart
+// DELETE /api/carts/ (status 204)
 
 // checkout
-// PUT /api/carts/checkout --> update order status to processing
+// PUT /api/carts/checkout --> update order status to processing (status 201)

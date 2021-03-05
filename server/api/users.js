@@ -26,6 +26,9 @@ router.get('/:userId', adminsOrUsers, async (req, res, next) => {
       attributes: ['id', 'firstName', 'lastName', 'email', 'isAdmin'],
       where: {id: req.params.userId}
     })
+    if (!user) {
+      res.status(404).send('This user does not exist!')
+    }
     res.send(user)
   } catch (error) {
     next(error)
@@ -44,7 +47,7 @@ router.get('/:userId/orders', adminsOrUsers, async (req, res, next) => {
       include: {model: Mug}
     })
     if (!orders) {
-      res.send('No orders found on server')
+      res.status(404).send('No orders found on server')
     }
     res.send(orders)
   } catch (error) {
