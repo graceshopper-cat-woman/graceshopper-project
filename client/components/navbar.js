@@ -2,27 +2,43 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, user}) => (
   <div className="navDiv">
     <h1 className="logo">Hugs&Mugs</h1>
     <nav>
       {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
+        <>
+          <div className="navLeft">
+            {/* The navbar will show these links after you log in */}
+            <Link to="/home">Home</Link>
+            <Link to={`/users/${user.id}`}> Profile </Link>
+            <Link to="/mugs"> View All </Link>
+            <a href="#" onClick={handleClick}>
+              Logout
+            </a>
+          </div>
+          <div>
+            <Link to="/carts">
+              <FontAwesomeIcon id="cart" icon={['fas', 'shopping-cart']} />
+            </Link>
+          </div>
+        </>
       ) : (
-        <div className="navLeft">
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/mugs"> View All </Link>
-        </div>
+        <>
+          <div className="navLeft">
+            {/* The navbar will show these links before you log in */}
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/mugs"> View All </Link>
+          </div>
+          <div className="navRight">
+            <Link to="/carts">
+              <FontAwesomeIcon id="cart" icon={['fas', 'shopping-cart']} />
+            </Link>
+          </div>
+        </>
       )}
     </nav>
   </div>
@@ -50,7 +66,9 @@ export default connect(mapState, mapDispatch)(Navbar)
 /**
  * PROP TYPES
  */
+
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  user: PropTypes.object
 }

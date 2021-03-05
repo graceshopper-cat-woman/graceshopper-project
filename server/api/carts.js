@@ -8,6 +8,7 @@ router.get('/', async (req, res, next) => {
   try {
     let order
     //user cart
+
     if (req.user) {
       order = await Order.findOne({
         where: {
@@ -19,6 +20,8 @@ router.get('/', async (req, res, next) => {
         }
       })
       //guest cart
+
+
     } else if (req.session.guestCart) {
       order = await Order.findOne({
         where: {
@@ -32,6 +35,7 @@ router.get('/', async (req, res, next) => {
     if (!order) {
       res.send('Cart is empty')
     } else {
+
       //send all cart items
       res.send(order)
     }

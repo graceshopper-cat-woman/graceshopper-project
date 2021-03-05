@@ -78,21 +78,112 @@ nav a {
   display: flex;
   flex-flow: column nowrap;
 }
-form {
-  margin: 1em;
+#cart {
+  width: 28px;
+  height: 28px;
+  color: #dbd8dd;
 }
 
+.formContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  height: 525px;
+  margin-top: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #657e88;
+  color: #dbd8dd;
+  box-shadow: 3px 3px 4px 3px rgba(48, 48, 49, 0.733);
+}
+.signup {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  padding: 8px;
+  margin: 10px;
+  width: 100%;
+  font-family: 'Montserrat' sans-serif;
+  font-size: 18px;
+}
+.signup input {
+  line-height: 22px;
+  margin: 4px;
+  background-color: #dbd8dd;
+  border: none;
+}
+#signUpBtn {
+  display: flex;
+  background-color: #53465d;
+  margin-top: 20px;
+  width: 100%;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: none;
+}
+
+h2 {
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size: 40px;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.signInContainer {
+  display: flex;
+  flex-direction: column nowrap;
+  justify-content: space-around;
+  width: 325px;
+  height: 350px;
+  margin-top: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 10px;
+  background-color: #657e88;
+  color: #dbd8dd;
+  box-shadow: 3px 3px 4px 3px rgba(48, 48, 49, 0.733);
+}
+.signIn form {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  margin-left: 10px;
+  padding: 10px;
+}
+.signIn input {
+  display: flex;
+  flex-flow: column nowrap;
+  line-height: 22px;
+  width: 90%;
+  margin: 10px;
+  background-color: #dbd8dd;
+  border: none;
+}
+
+#authBtn a {
+  text-decoration: none;
+  display: flex;
+  background-color: #53465d;
+  margin-top: 20px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: none;
+}
 .productPhoto img {
   width: 192;
   height: 192;
 }
 
-/* .pageContainer {
+.pageContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 2px red;
-} */
+  margin: auto;
+}
 
 .hero-image {
   background-image: linear-gradient(
@@ -142,16 +233,16 @@ form {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  margin: 5px;
-  padding: 10px;
-  max-width: 300px;
-  max-height: 325px;
+  margin: 10px 5px 20px;
+  padding: 2px 5px;
+  max-width: 350px;
+  max-height: 400px;
 }
 
 .productStyle {
   font-family: 'Montserrat', sans-serif;
   margin: 5px;
-  padding: 0px 10px;
+  padding: 5px;
   color: #293a3d;
   text-decoration: none;
   text-shadow: none;
@@ -206,6 +297,8 @@ form {
 
 #productPhoto {
   display: flex;
-  max-width: 200px;
-  max-height: 200px;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  margin-top: 20px;
 }
