@@ -33,7 +33,7 @@ router.get('/', async (req, res, next) => {
       res.send('Cart is empty')
     } else {
       //send all cart items
-      res.send(order.mugs)
+      res.send(order)
     }
   } catch (error) {
     next(error)
@@ -105,9 +105,47 @@ router.put('/', async (req, res, next) => {
 
 // increment/decrement a product IN cart
 // PUT api/carts (status 201)
-
+router.put('/', async (req, res, next) => {
+  try {
+    let item = await MugOrder.findOne({
+      where: {
+        orderId: req.body.order.id,
+        mugId: req.body.mug.id
+      }
+    })
+    res.status(201).send(await item.update(req.body.quantity))
+  } catch (error) {
+    next(error)
+  }
+})
 // remove a product completely from cart
 // DELETE /api/carts/ (status 204)
-
+router.delete('/', async (req, res, next) => {
+  try {
+    let item = await MugOrder.findOne({
+      where: {
+        orderId: req.body.order.id,
+        mugId: req.body.mug.id
+      }
+    })
+    await item.destroy()
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
 // checkout
 // PUT /api/carts/checkout --> update order status to processing (status 201)
+router.put('/checkout', async (req, res, next) => {
+  try {
+    let purchases = await Order.findOne({
+      where: {
+        id: req.body.order.id,
+        orderStatus: 'inCart'
+      }
+    })
+    res.status(201).send(await purchases.update({orderStatus: 'processing'}))
+  } catch (error) {
+    next(error)
+  }
+})
