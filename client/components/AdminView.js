@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMugs} from '../store/mug'
-import {Link} from 'react-router-dom'
 
 class AdminView extends Component {
   componentDidMount() {
