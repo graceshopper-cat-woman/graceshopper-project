@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {addNewMug} from '../store/mug'
 import {connect} from 'react-redux'
+import MugForm from './MugForm'
 
 const defaultState = {
   name: '',
@@ -35,8 +36,11 @@ class AddMug extends Component {
 
   render() {
     return (
-      //form
-      <div>Under Construction</div>
+      <MugForm
+        {...this.state}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+      />
     )
   }
 }
