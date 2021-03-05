@@ -57,9 +57,10 @@ const createApp = () => {
       secret: process.env.SESSION_SECRET || 'my best friend is Cody',
       store: sessionStore,
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: true //CHANGED FALSE TO TRUE --> KEEPS SESSION ID THE SAME
     })
   )
+
   app.use(passport.initialize())
   app.use(passport.session())
 
@@ -80,14 +81,6 @@ const createApp = () => {
       next()
     }
   })
-
-  // app.use((req, res, next) => {
-  //   console.log('Who am I?')
-  //   console.log('user: ', req.user)
-  //   console.log('email: ', req.user && req.user.email)
-  //   console.log('admin: ', req.user && req.user.isAdmin)
-  //   next()
-  // })
 
   // sends index.html
   app.use('*', (req, res) => {

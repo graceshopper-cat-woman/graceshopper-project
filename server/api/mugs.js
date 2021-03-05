@@ -8,7 +8,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const mugs = await Mug.findAll()
-
+    console.log('REQ.SESSION.ID IN ALL MUGS-->', req.session.id)
     res.json(mugs)
   } catch (error) {
     next(error)
@@ -20,7 +20,7 @@ router.get('/:mugId', async (req, res, next) => {
   try {
     const mug = await Mug.findByPk(req.params.mugId)
     if (!mug) {
-      res.send(`This mug doesn't exist`)
+      res.status(404).send(`This mug doesn't exist`)
     }
     res.send(mug)
   } catch (error) {
@@ -49,7 +49,7 @@ router.post('/', adminsOnly, async (req, res, next) => {
     if (created) {
       res.send(newMug)
     } else {
-      res.send('This mug already exists!')
+      res.status(201).send('This mug already exists!')
     }
   } catch (error) {
     next(error)
@@ -64,7 +64,7 @@ router.put('/:mugId', adminsOnly, async (req, res, next) => {
       res.send(`This mug doesn't exist`)
     }
     const updatedMug = await mug.update(req.body)
-    res.send(updatedMug)
+    res.status(201).send(updatedMug)
   } catch (error) {
     next(error)
   }
