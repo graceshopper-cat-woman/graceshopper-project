@@ -8,7 +8,8 @@ import {
   UserHome,
   AllMugs,
   SingleMug,
-  Landing
+  Landing,
+  AdminView
 } from './components'
 import {me} from './store'
 
@@ -31,6 +32,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/mugs" component={AllMugs} />
         <Route exact path="/mugs/:mugId" component={SingleMug} />
+        <Route exact path="/admin" component={AdminView} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
