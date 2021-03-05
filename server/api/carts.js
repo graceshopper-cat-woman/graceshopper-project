@@ -1,6 +1,5 @@
 const router = require('express').Router()
-const {User, Order, Mug, MugOrder} = require('../db/models')
-const usersOnly = require('../utils/usersOnly')
+const {Order, Mug, MugOrder} = require('../db/models')
 module.exports = router
 
 // GET cart
@@ -104,8 +103,11 @@ router.put('/', async (req, res, next) => {
   }
 })
 
-//increment/decrement a product IN cart
+// increment/decrement a product IN cart
 // PUT api/carts
 
-//remove a product from cart
+// remove a product from cart
 // DELETE /api/carts/
+
+// checkout
+// PUT /api/carts/checkout --> update order status to processing
