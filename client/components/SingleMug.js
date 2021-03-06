@@ -45,7 +45,7 @@ class SingleMug extends Component {
           <div className="singleProductDescription">
             <h3 className="productStyle">{mug.name}</h3>
             <p>{mug.description}</p>
-            <p>{mug.size} oz.</p>
+            <p>Size: {mug.size} oz.</p>
             <p>${this.setPrice(mug.price)}</p>
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="quantity">Quantity:</label>
