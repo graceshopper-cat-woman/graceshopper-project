@@ -83,7 +83,8 @@ router.put('/add', async (req, res, next) => {
     const mugToAdd = await MugOrder.findOne({
       where: {
         orderId: order.id,
-        mugId: req.body.mugId
+        mugId: req.body.mugId,
+        price: req.body.mugPrice
       }
     })
     if (mugToAdd) {
@@ -96,7 +97,8 @@ router.put('/add', async (req, res, next) => {
       await MugOrder.create({
         quantity: Number(req.body.quantity),
         mugId: req.body.mugId,
-        orderId: order.id
+        orderId: order.id,
+        price: req.body.mugPrice
       })
     }
     //send all cart items

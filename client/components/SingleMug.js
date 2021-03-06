@@ -28,7 +28,11 @@ class SingleMug extends Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.addToCart(this.state.quantity, +this.props.match.params.mugId)
+    this.props.addToCart(
+      this.state.quantity,
+      +this.props.match.params.mugId,
+      this.props.mug.price
+    )
     this.setState({quantity: 1, added: true})
   }
   render() {
@@ -73,7 +77,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadMug: id => dispatch(fetchMug(id)),
-  addToCart: (quantity, mugId) => dispatch(addToCart(quantity, mugId))
+  addToCart: (quantity, mugId, mugPrice) =>
+    dispatch(addToCart(quantity, mugId, mugPrice))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMug)

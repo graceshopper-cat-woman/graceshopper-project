@@ -26,12 +26,13 @@ export const fetchCart = () => {
   }
 }
 
-export const addToCart = (quantity, mugId) => {
+export const addToCart = (quantity, mugId, mugPrice) => {
   return async dispatch => {
     try {
       const {data} = await axios.put('/api/carts/add', {
         quantity: quantity,
-        mugId: mugId
+        mugId: mugId,
+        mugPrice: mugPrice
       })
       console.log(data)
       dispatch(_addToCart(data))

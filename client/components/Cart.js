@@ -45,12 +45,15 @@ class Cart extends Component {
                 </Link>
                 <span>Qty:{item.mugOrder.quantity}</span>
                 <span>
-                  Price: ${this.setPrice(item.price)} x {item.mugOrder.quantity}
+                  Price: ${this.setPrice(item.price)} x {item.mugOrder.quantity}{' '}
+                  = ${(
+                    this.setPrice(item.price) * item.mugOrder.quantity
+                  ).toFixed(2)}
                 </span>
               </div>
             ))}
           </div>
-          <p>Total: ${this.totalPrice(cart.mugs)}</p>
+          <p>Total: ${this.totalPrice(cart.mugs).toFixed(2)}</p>
           <Link to="/mugs">Continue shopping? </Link>
         </>
       )
