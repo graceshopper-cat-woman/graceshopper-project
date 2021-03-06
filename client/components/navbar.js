@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+
+const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
   <div className="navDiv">
     <h1 className="logo">Hugs&Mugs</h1>
     <nav>
@@ -19,6 +20,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <a href="#" onClick={handleClick}>
               Logout
             </a>
+            {isAdmin ? <Link to="/admin"> Admin Options </Link> : ''}
           </div>
           <div>
             <Link to="/carts">
@@ -50,7 +52,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: state.user.isAdmin
   }
 }
 
