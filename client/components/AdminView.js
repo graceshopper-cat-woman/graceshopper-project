@@ -12,8 +12,6 @@ class AdminView extends Component {
     this.state = {viewingMugs: true}
   }
   viewChange() {
-    console.log(this.state)
-
     if (this.state.viewingMugs) {
       this.setState({viewingMugs: false})
     } else {

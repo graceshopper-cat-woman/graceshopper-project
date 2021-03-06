@@ -9,6 +9,7 @@ class AdminUserView extends Component {
   }
   render() {
     const users = this.props.users
+    console.log(users)
     if (users === undefined) {
       return (
         <div className="pageContainer">
@@ -21,9 +22,9 @@ class AdminUserView extends Component {
           <div className="productContainer">
             {users.map(user => (
               <div className="productCard" key={user.id}>
-                <h3 className="productStyle">
+                <h2 className="productStyle">
                   {user.firstName} {user.lastName}
-                </h3>
+                </h2>
                 <h4 className="productStyle">{user.email}</h4>
                 <h4 className="productStyle">
                   {user.isAdmin
@@ -45,6 +46,8 @@ class AdminUserView extends Component {
           </div>
         </div>
       )
+    } else {
+      return <div>No Users!</div>
     }
   }
 }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMug} from '../store/singleMug'
-import {updateMug} from '../store/mug'
+import {updateMug, deleteMug} from '../store/mug'
 import MugForm from './MugForm'
 
 const defaultState = {
@@ -21,6 +21,7 @@ class AdminModifyMug extends Component {
     this.setPrice = this.setPrice.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
     this.state = defaultState
   }
   componentDidMount() {
@@ -40,6 +41,13 @@ class AdminModifyMug extends Component {
     newMug.id = this.props.mug.id
     this.props.updateMug(newMug)
     modified = true
+    this.setState({defaultState})
+  }
+  handleDelete(evt) {
+    evt.preventDefault()
+    const deletedMug = this.state
+    deletedMug.id = this.props.mug.id
+    this.props.deleteMug(deletedMug)
     this.setState({defaultState})
   }
   render() {
@@ -66,7 +74,11 @@ class AdminModifyMug extends Component {
           handleSubmit={this.handleSubmit}
         />
         {modified && <h4>Mug Updated!</h4>}
-        <button className="productButton" type="button">
+        <button
+          className="productButton"
+          type="button"
+          onClick={this.handleDelete}
+        >
           Delete Mug
         </button>
       </>
@@ -80,7 +92,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadMug: id => dispatch(fetchMug(id)),
-  updateMug: mug => dispatch(updateMug(mug))
+  updateMug: mug => dispatch(updateMug(mug)),
+  deleteMug: mug => dispatch(deleteMug(mug))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminModifyMug)

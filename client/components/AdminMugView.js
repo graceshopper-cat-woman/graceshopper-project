@@ -8,7 +8,6 @@ class AdminMugView extends Component {
     this.props.loadMugs()
   }
   render() {
-    console.log(this.props)
     if (this.props.mugs === undefined) {
       return (
         <div className="pageContainer">
@@ -19,6 +18,11 @@ class AdminMugView extends Component {
     return (
       <div className="pageContainer">
         <div className="productContainer">
+          <Link to="/admin/add/">
+            <button className="productButton" type="button">
+              Add New Mug
+            </button>
+          </Link>
           {this.props.mugs.map(mug => (
             <div className="productCard" key={mug.id}>
               <img id="productPhoto" alt={mug.name} src={mug.imageUrl} />
