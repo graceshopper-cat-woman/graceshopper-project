@@ -29,19 +29,22 @@ class Cart extends Component {
       return <div>Cart is Empty</div>
     } else {
       return (
-        <div>
-          {cart.mugs.map(item => (
-            <div key={item.id}>
-              <Link to={`/mugs/${item.id}`}>
-                <span>Item: {item.name}</span>
-              </Link>
-              <span>Qty:{item.mugOrder.quantity}</span>
-              <span>
-                Price: ${this.setPrice(item.price) * item.mugOrder.quantity}
-              </span>
-            </div>
-          ))}
-        </div>
+        <>
+          <div>
+            {cart.mugs.map(item => (
+              <div key={item.id}>
+                <Link to={`/mugs/${item.id}`}>
+                  <span>Item: {item.name}</span>
+                </Link>
+                <span>Qty:{item.mugOrder.quantity}</span>
+                <span>
+                  Price: ${this.setPrice(item.price) * item.mugOrder.quantity}
+                </span>
+              </div>
+            ))}
+          </div>
+          <Link to="/mugs">Continue shopping? </Link>
+        </>
       )
     }
   }
