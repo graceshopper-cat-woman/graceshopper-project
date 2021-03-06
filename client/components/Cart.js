@@ -10,9 +10,17 @@ class Cart extends Component {
       isLoading: true
     }
     this.setPrice = this.setPrice.bind(this)
+    this.totalPrice = this.totalPrice.bind(this)
   }
   setPrice(number) {
     return (number / 100).toFixed(2)
+  }
+  totalPrice(items) {
+    return items.reduce(
+      (total, item) =>
+        total + this.setPrice(item.price) * item.mugOrder.quantity,
+      0
+    )
   }
 
   componentDidMount() {
@@ -21,7 +29,6 @@ class Cart extends Component {
   }
   render() {
     const cart = this.props.cart || []
-    console.log('CART--->', cart)
     const loading = this.state.isLoading
     if (loading) {
       return <div>Loading...</div>
@@ -34,15 +41,16 @@ class Cart extends Component {
             {cart.mugs.map(item => (
               <div key={item.id}>
                 <Link to={`/mugs/${item.id}`}>
-                  <span>Item: {item.name}</span>
+                  <span>{item.name}</span>
                 </Link>
                 <span>Qty:{item.mugOrder.quantity}</span>
                 <span>
-                  Price: ${this.setPrice(item.price) * item.mugOrder.quantity}
+                  Price: ${this.setPrice(item.price)} x {item.mugOrder.quantity}
                 </span>
               </div>
             ))}
           </div>
+          <p>Total: ${this.totalPrice(cart.mugs)}</p>
           <Link to="/mugs">Continue shopping? </Link>
         </>
       )
