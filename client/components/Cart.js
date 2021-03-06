@@ -21,14 +21,11 @@ class Cart extends Component {
   }
   render() {
     const cart = this.props.cart || []
-    console.log('CART ITEMS--->', cart.mugs)
+    console.log('CART--->', cart)
     const loading = this.state.isLoading
     if (loading) {
       return <div>Loading...</div>
-    } else if (
-      (!loading && cart.length === 0) ||
-      (!loading && cart === 'Cart is empty')
-    ) {
+    } else if (cart.mugs === undefined || cart === 'Cart is empty') {
       return <div>Cart is Empty</div>
     } else {
       return (
