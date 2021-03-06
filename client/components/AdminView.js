@@ -1,13 +1,29 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMugs} from '../store/mug'
+import AdminMugView from './AdminMugView'
+import AdminUserView from './AdminUserView'
+import {Link} from 'react-router-dom'
 
 class AdminView extends Component {
+  constructor() {
+    super()
+    this.viewChange = this.viewChange.bind(this)
+    this.state = {viewingMugs: true}
+  }
+  viewChange() {
+    console.log(this.state)
+
+    if (this.state.viewingMugs) {
+      this.setState({viewingMugs: false})
+    } else {
+      this.setState({viewingMugs: true})
+    }
+  }
   componentDidMount() {
     this.props.loadMugs()
   }
   render() {
-    console.log(this.props)
     if (this.props.mugs === undefined) {
       return (
         <div className="pageContainer">
@@ -17,37 +33,14 @@ class AdminView extends Component {
     }
     return (
       <div className="pageContainer">
-        <div className="productContainer">
-          {this.props.mugs.map(mug => (
-            <div className="productCard" key={mug.id}>
-              <img id="productPhoto" alt={mug.name} src={mug.imageUrl} />
-              <h3 className="productStyle">{mug.name}</h3>
-              <h4 className="productStyle">${mug.price}</h4>
-              <form>
-                <label htmlFor="Name">Name:</label>
-                <input type="text" id="name" name="name" value={mug.name} />
-                <br />
-                <label htmlFor="Price">Price:</label>
-                <input type="text" id="price" name="price" value={mug.price} />
-                <br />
-                <label htmlFor="Inventory">Inventory:</label>
-                <input
-                  type="text"
-                  id="inventory"
-                  name="inventory"
-                  value={mug.inventory}
-                />
-                <br />
-              </form>
-              <button className="productButton" type="button">
-                Modify Mug
-              </button>
-              <button className="productButton" type="button">
-                Delete Mug
-              </button>
-            </div>
-          ))}
-        </div>
+        <button
+          className="productButton"
+          type="button"
+          onClick={this.viewChange}
+        >
+          {this.state.viewingMugs ? 'View Users' : 'View Mugs'}
+        </button>
+        {this.state.viewingMugs ? <AdminMugView /> : <AdminUserView />}
       </div>
     )
   }

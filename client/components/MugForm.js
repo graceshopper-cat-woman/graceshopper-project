@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MugForm = props => (
+export const MugForm = props => (
   <form id="mug-form" onSubmit={props.handleSubmit}>
     <label htmlFor="mugName">Mug Name:</label>
     <input
@@ -29,7 +29,7 @@ const MugForm = props => (
     />
     <br />
 
-    <label htmlFor="price">Mug Price:</label>
+    <label htmlFor="price">Mug Price(In dollars and cents):</label>
     <input
       name="price"
       type="text"
@@ -56,7 +56,7 @@ const MugForm = props => (
     />
     <br />
 
-    <label htmlFor="inventory">Mug Inventory:</label>
+    <label htmlFor="inventory">Mug Inventory (# of):</label>
     <input
       name="inventory"
       type="text"
