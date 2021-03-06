@@ -9,8 +9,7 @@ import {
   AllMugs,
   SingleMug,
   Landing,
-  Cart,
-  SignupForm
+  Cart
 } from './components'
 import {me} from './store'
 
@@ -30,7 +29,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
-        <Route exact path="/signup" component={SignupForm} />
+        <Route path="/signup" component={Signup} />
         <Route exact path="/mugs" component={AllMugs} />
         <Route exact path="/mugs/:mugId" component={SingleMug} />
         <Route exact path="/carts" component={Cart} />
