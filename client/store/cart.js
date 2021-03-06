@@ -26,11 +26,13 @@ export const fetchCart = () => {
   }
 }
 
-export const addToCart = (id, quantity) => {
+export const addToCart = (quantity, mugId) => {
   return async dispatch => {
     try {
-      console.log(id, 'id', quantity, 'quantity')
-      const {data} = await axios.post('/api/carts', {id, quantity})
+      const {data} = await axios.put('/api/carts/add', {
+        quantity: quantity,
+        mugId: mugId
+      })
       console.log(data)
       dispatch(_addToCart(data))
     } catch (error) {
@@ -40,15 +42,17 @@ export const addToCart = (id, quantity) => {
 }
 
 //INITIAL STATE
-let initialState = []
+let initialState = {
+  items: []
+}
 
 //REDUCER
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CART:
-      return action.cart
+      return {...state, items: action.cart}
     case ADD_TO_CART:
-      return [...state, action.cart]
+      return {...state, items: action.cart}
     default:
       return state
   }

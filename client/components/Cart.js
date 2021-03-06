@@ -18,13 +18,10 @@ class Cart extends Component {
   componentDidMount() {
     this.props.loadCart()
     this.setState({isLoading: false})
-    console.log('COMPONENT MOUNTED')
-    console.log('MOUNTED STATE', this.state.isLoading)
   }
   render() {
-    console.log('ISLOADING RENDER -->', this.state.isLoading)
     const cart = this.props.cart || []
-    console.log('CART--->', cart)
+    console.log('CART ITEMS--->', cart.mugs)
     const loading = this.state.isLoading
     if (loading) {
       return <div>Loading...</div>
@@ -36,13 +33,15 @@ class Cart extends Component {
     } else {
       return (
         <div>
-          {cart.map(item => (
+          {cart.mugs.map(item => (
             <div key={item.id}>
               <Link to={`/mugs/${item.id}`}>
                 <span>Item: {item.name}</span>
               </Link>
-              <span>Qty:{item.quantity}</span>
-              <span>Price: {this.setPrice(item.quantity)}</span>
+              <span>Qty:{item.mugOrder.quantity}</span>
+              <span>
+                Price: ${this.setPrice(item.price) * item.mugOrder.quantity}
+              </span>
             </div>
           ))}
         </div>
@@ -52,7 +51,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart.items
 })
 
 const mapDispatchToProps = dispatch => {
