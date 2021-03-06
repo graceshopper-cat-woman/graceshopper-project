@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn, user}) => (
+const Navbar = ({handleClick, isLoggedIn}) => (
   <div className="navDiv">
     <h1 className="logo">Hugs&Mugs</h1>
     <nav>
@@ -13,7 +14,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
           <div className="navLeft">
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
-            <Link to={`/users/${user.id}`}> Profile </Link>
+            <Link to="/users"> Profile </Link>
             <Link to="/mugs"> View All </Link>
             <a href="#" onClick={handleClick}>
               Logout
@@ -69,6 +70,5 @@ export default connect(mapState, mapDispatch)(Navbar)
 
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
-  user: PropTypes.object
+  isLoggedIn: PropTypes.bool.isRequired
 }
