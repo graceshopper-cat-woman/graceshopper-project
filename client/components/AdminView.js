@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchMugs} from '../store/mug'
+import {fetchMugs, deleteMug} from '../store/mug'
 import AdminMugView from './AdminMugView'
 import AdminUserView from './AdminUserView'
-import {Link} from 'react-router-dom'
 
 class AdminView extends Component {
   constructor() {

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchMug} from '../store/singleMug'
 import {updateMug, deleteMug} from '../store/mug'
 import MugForm from './MugForm'
+import {Link} from 'react-router-dom'
 
 const defaultState = {
   name: '',
@@ -74,13 +75,15 @@ class AdminModifyMug extends Component {
           handleSubmit={this.handleSubmit}
         />
         {modified && <h4>Mug Updated!</h4>}
-        <button
-          className="productButton"
-          type="button"
-          onClick={this.handleDelete}
-        >
-          Delete Mug
-        </button>
+        <Link to="/admin">
+          <button
+            className="productButton"
+            type="button"
+            onClick={this.handleDelete}
+          >
+            Delete Mug
+          </button>
+        </Link>
       </>
     )
   }
