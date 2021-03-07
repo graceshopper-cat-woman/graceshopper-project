@@ -36,7 +36,7 @@ class AdminUserView extends Component {
                       ',' +
                       user.shippingState +
                       user.shippingZip
-                    : 'NA'}
+                    : 'N/A'}
                 </h4>
                 <h4 className="productStyle">
                   Billing address:{' '}
@@ -47,7 +47,7 @@ class AdminUserView extends Component {
                       ',' +
                       user.billingState +
                       user.billingZip
-                    : 'NA'}
+                    : 'N/A'}
                 </h4>
               </div>
             ))}

@@ -12,7 +12,9 @@ import {
   AddMug,
   AdminModifyMug,
   Cart,
-  SignupForm
+  SignupForm,
+  AdminUserView,
+  AdminMugView
 } from './components'
 import {me} from './store'
 
@@ -45,7 +47,9 @@ class Routes extends Component {
             {isAdmin ? (
               <Switch>
                 <Route exact path="/admin" component={AdminView} />
-                <Route exact path="/admin/add/" component={AddMug} />
+                <Route exact path="/admin/add" component={AddMug} />
+                <Route exact path="/admin/users" component={AdminUserView} />
+                <Route exact path="/admin/mugs" component={AdminMugView} />
                 <Route
                   exact
                   path="/admin/edit/:mugId"

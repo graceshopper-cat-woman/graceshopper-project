@@ -19,7 +19,20 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
             <a href="#" onClick={handleClick}>
               Logout
             </a>
-            {isAdmin ? <Link to="/admin"> Admin Options </Link> : ''}
+            {isAdmin ? (
+              <div className="dropdown">
+                <Link to="/admin" className="dropbtn">
+                  {' '}
+                  Admin Options{' '}
+                </Link>
+                <div className="dropdown-content">
+                  <Link to="/admin/mugs"> View Mugs </Link>
+                  <Link to="/admin/users"> View Users </Link>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
           <div>
             <Link to="/carts">
