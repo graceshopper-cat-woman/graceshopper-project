@@ -47,13 +47,16 @@ class SingleMug extends Component {
             <img src={mug.imageUrl} alt={mug.name} />
           </div>
           <div className="singleProductDescription">
-            <h3 className="productStyle">{mug.name}</h3>
-            <p>{mug.description}</p>
-            <p>Size: {mug.size} oz.</p>
-            <p>${this.setPrice(mug.price)}</p>
-            <form onSubmit={this.handleSubmit}>
-              <label htmlFor="quantity">Quantity:</label>
+            <h3 className="singleProductStyle">{mug.name}</h3>
+            <p className="singleProductStyle">{mug.description}</p>
+            <p className="singleProductStyle">Size: {mug.size} oz.</p>
+            <p className="singleProductStyle">${this.setPrice(mug.price)}</p>
+            <form className="singleProductStyle" onSubmit={this.handleSubmit}>
+              <label className="singleProductStyle" htmlFor="quantity">
+                Quantity:
+              </label>
               <input
+                className="singleProductStyle"
                 type="number"
                 id="quantity"
                 name="quantity"

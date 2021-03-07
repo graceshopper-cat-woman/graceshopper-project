@@ -183,6 +183,7 @@ h2 {
   justify-content: center;
   align-items: center;
   margin: auto;
+  min-height: 400px;
 }
 
 .hero-image {
@@ -241,12 +242,15 @@ h2 {
 
 .productStyle {
   font-family: 'Montserrat', sans-serif;
-  margin: 5px;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 2px;
   padding: 5px;
   color: #293a3d;
   text-decoration: none;
   text-shadow: none;
 }
+
 #quantity {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -278,10 +282,14 @@ h2 {
   align-items: center;
   justify-content: center;
   margin: 10px;
-  padding: 20px;
   width: 100%;
   margin-left: 15px;
   margin-right: 15px;
+}
+
+.singleProductImage img {
+  border-radius: 10%;
+  box-shadow: 5px 5px 30px 0px #a8a7a8;
 }
 
 .singleProductDescription {
@@ -294,11 +302,41 @@ h2 {
   margin-left: 15px;
   margin-right: 15px;
 }
+.singleProductStyle {
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 8px;
+  padding: 2px;
+}
+.singleProductStyle input {
+  margin-right: 9px;
+  margin-top: 2px;
+}
 
 #productPhoto {
   display: flex;
   width: 200px;
   height: 200px;
-  padding: 10px;
   margin-top: 20px;
+  margin-bottom: 11px;
+  border-radius: 3%;
+  box-shadow: 0px 0px 17px 0px #a8a7a8;
+  border-top: none;
+}
+
+.cartView {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.cartView a {
+  background-color: #5f506b;
+  text-decoration: none;
+  color: #dbd8dd;
+  padding: 15px 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-right: 10%;
+  margin-left: 10%;
 }

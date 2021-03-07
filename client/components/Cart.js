@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
 import {Link} from 'react-router-dom'
+import {CartItem} from './CartItem'
 
 class Cart extends Component {
   constructor() {
@@ -33,24 +34,21 @@ class Cart extends Component {
     if (loading) {
       return <div>Loading...</div>
     } else if (cart.mugs === undefined || cart === 'Cart is empty') {
-      return <div>Cart is Empty</div>
+      return (
+        <div className="pageContainer">
+          <div className="cartView">
+            <img src="../../public/images/empty-cart.png" alt="sad mug" />
+            <h3>Oh no! Your cart is currently empty :(</h3>
+            <Link to="/mugs"> Find your perfect mug </Link>
+          </div>
+        </div>
+      )
     } else {
       return (
         <>
           <div>
             {cart.mugs.map(item => (
-              <div key={item.id}>
-                <Link to={`/mugs/${item.id}`}>
-                  <span>{item.name}</span>
-                </Link>
-                <span>Qty:{item.mugOrder.quantity}</span>
-                <span>
-                  Price: ${this.setPrice(item.price)} x {item.mugOrder.quantity}{' '}
-                  = ${(
-                    this.setPrice(item.price) * item.mugOrder.quantity
-                  ).toFixed(2)}
-                </span>
-              </div>
+              <CartItem key={item.id} item={item} setPrice={this.setPrice} />
             ))}
           </div>
           <p>Total: ${this.totalPrice(cart.mugs).toFixed(2)}</p>

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
+const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
   <div className="navDiv">
     <h1 className="logo">Hugs&Mugs</h1>
     <nav>
