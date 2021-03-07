@@ -4,13 +4,17 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Login,
-  Signup,
   UserHome,
   AllMugs,
   SingleMug,
   Landing,
+  AdminView,
+  AddMug,
+  AdminModifyMug,
   Cart,
-  SignupForm
+  SignupForm,
+  AdminUserView,
+  AdminMugView
 } from './components'
 import {me} from './store'
 
@@ -23,14 +27,13 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
-
+    const {isLoggedIn, isAdmin} = this.props
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
-        <Route exact path="/signup" component={SignupForm} />
+        <Route path="/signup" component={SignupForm} />
         <Route exact path="/mugs" component={AllMugs} />
         <Route exact path="/mugs/:mugId" component={SingleMug} />
         <Route exact path="/carts" component={Cart} />
@@ -41,6 +44,21 @@ class Routes extends Component {
             <Route exact path="/mugs" component={AllMugs} />
             <Route exact path="/mugs/:mugId" component={SingleMug} />
             <Route exact path="/carts" component={Cart} />
+            {isAdmin ? (
+              <Switch>
+                <Route exact path="/admin" component={AdminView} />
+                <Route exact path="/admin/add" component={AddMug} />
+                <Route exact path="/admin/users" component={AdminUserView} />
+                <Route exact path="/admin/mugs" component={AdminMugView} />
+                <Route
+                  exact
+                  path="/admin/edit/:mugId"
+                  component={AdminModifyMug}
+                />
+              </Switch>
+            ) : (
+              ''
+            )}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -57,7 +75,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: state.user.isAdmin
   }
 }
 

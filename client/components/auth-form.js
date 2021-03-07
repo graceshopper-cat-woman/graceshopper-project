@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import SignupForm from './SignupForm'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 
@@ -9,12 +10,15 @@ import {auth} from '../store'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
+  if (name === 'signup') {
+    return <SignupForm {...props} />
+  }
   return (
     <div className="pageContainer">
       <div className="signInContainer">
         <div>
           <form className="signIn" onSubmit={handleSubmit} name={name}>
-            <h2 id="signUpText">You're back!</h2>
+            <h2 id="signUpText">Yay! You're back!</h2>
             <p>Please use you login credentials to access your account.</p>
             <label htmlFor="email">
               <small>Email</small>
@@ -69,9 +73,19 @@ const mapDispatch = dispatch => {
     handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const info = {
+        email: evt.target.email.value,
+        password: evt.target.password.value
+      }
+      if (formName === 'signup') {
+        // if (evt.target.confirmPassword.value !== info.password) {
+        //   return
+        // }
+        info.firstName = evt.target.firstName.value
+        info.lastName = evt.target.lastName.value
+      }
+      console.log('DISPATCHING W/ INFO FROM FORM')
+      dispatch(auth(info, formName))
     }
   }
 }

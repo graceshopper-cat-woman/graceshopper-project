@@ -20,8 +20,6 @@ router.get('/', async (req, res, next) => {
         }
       })
       //guest cart
-
-
     } else if (req.session.guestCart) {
       order = await Order.findOne({
         where: {
@@ -35,7 +33,6 @@ router.get('/', async (req, res, next) => {
     if (!order) {
       res.send('Cart is empty')
     } else {
-
       //send all cart items
       res.send(order)
     }
@@ -46,12 +43,12 @@ router.get('/', async (req, res, next) => {
 
 // add a Mug TO cart
 // PUT /api/carts/
-router.put('/', async (req, res, next) => {
+router.put('/add', async (req, res, next) => {
   try {
     let order
     //user cart
     if (req.user) {
-      order = await Order.findOrCreate({
+      ;[order] = await Order.findOrCreate({
         where: {
           userId: req.user.id,
           orderStatus: 'inCart'
@@ -86,22 +83,27 @@ router.put('/', async (req, res, next) => {
     const mugToAdd = await MugOrder.findOne({
       where: {
         orderId: order.id,
-        mugId: req.body.mugId
+        mugId: req.body.mugId,
+        price: req.body.mugPrice
       }
     })
     if (mugToAdd) {
       //if mug exists, update the quantity
-      await mugToAdd.update({quantity: mugToAdd.quantity + req.body.quantity})
+      await mugToAdd.update({
+        quantity: Number(mugToAdd.quantity) + Number(req.body.quantity)
+      })
     } else {
       //else, add to cart
       await MugOrder.create({
-        quantity: req.body.quantity,
+        quantity: Number(req.body.quantity),
         mugId: req.body.mugId,
-        orderId: order.id
+        orderId: order.id,
+        price: req.body.mugPrice
       })
     }
     //send all cart items
-    res.status(201).send(order.mugs)
+    if (!order) res.send('HELLO WORLD')
+    res.status(201).send(order)
   } catch (error) {
     next(error)
   }
@@ -117,7 +119,7 @@ router.put('/', async (req, res, next) => {
         mugId: req.body.mug.id
       }
     })
-    res.status(201).send(await item.update(req.body.quantity))
+    res.status(201).send(await item.update(Number(req.body.quantity)))
   } catch (error) {
     next(error)
   }

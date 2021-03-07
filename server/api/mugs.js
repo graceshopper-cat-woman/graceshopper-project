@@ -8,7 +8,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const mugs = await Mug.findAll()
-    console.log('REQ.SESSION.ID IN ALL MUGS-->', req.session.id)
+    //console.log('REQ.SESSION.ID IN ALL MUGS-->', req.session.id)
     res.json(mugs)
   } catch (error) {
     next(error)

@@ -3,7 +3,7 @@ import React from 'react'
 export function Landing() {
   return (
     <>
-      <div className="pageContainer">
+      <div>
         <div className="hero-image">
           <div className="hero-text">
             <span id="hero-h">Cozy Up </span>
