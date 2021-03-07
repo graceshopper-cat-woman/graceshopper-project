@@ -35,7 +35,7 @@ class AdminMugView extends Component {
               <img id="productPhoto" alt={mug.name} src={mug.imageUrl} />
               <h3 className="productStyle">{mug.name}</h3>
               <h4 className="productStyle">${this.setPrice(mug.price)}</h4>
-              <form>
+              {/*               <form>
                 <label htmlFor="Name">Name:</label>
                 <input
                   type="text"
@@ -60,10 +60,10 @@ class AdminMugView extends Component {
                   defaultValue={mug.inventory}
                 />
                 <br />
-              </form>
+              </form> */}
               <Link to={`/admin/edit/${mug.id}`}>
                 <button className="productButton" type="button">
-                  Modify Mug
+                  Edit
                 </button>
               </Link>
             </div>

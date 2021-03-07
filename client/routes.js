@@ -11,7 +11,8 @@ import {
   AdminView,
   AddMug,
   AdminModifyMug,
-  Cart
+  Cart,
+  SignupForm
 } from './components'
 import {me} from './store'
 
@@ -30,7 +31,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/signup" component={SignupForm} />
         <Route exact path="/mugs" component={AllMugs} />
         <Route exact path="/mugs/:mugId" component={SingleMug} />
         <Route exact path="/carts" component={Cart} />
@@ -41,7 +42,7 @@ class Routes extends Component {
             <Route exact path="/mugs" component={AllMugs} />
             <Route exact path="/mugs/:mugId" component={SingleMug} />
             <Route exact path="/carts" component={Cart} />
-            {this.props.isAdmin ? (
+            {isAdmin ? (
               <Switch>
                 <Route exact path="/admin" component={AdminView} />
                 <Route exact path="/admin/add/" component={AddMug} />
