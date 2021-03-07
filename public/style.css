@@ -82,6 +82,13 @@ nav a {
 .dropdown {
   float: left;
   overflow: hidden;
+  line-height: 20px;
+  text-decoration: none;
+  flex-direction: row;
+  justify-content: space-around;
+  color: #dbd8dd;
+  font-size: 18px;
+  padding: 0px 15px;
 }
 
 .dropdown .dropbtn {
