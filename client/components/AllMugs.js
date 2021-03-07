@@ -4,9 +4,22 @@ import {fetchMugs} from '../store/mug'
 import {Link} from 'react-router-dom'
 
 class AllMugs extends Component {
+  constructor() {
+    super()
+    this.state = {
+      mugQuantities: []
+    }
+    this.setPrice = this.setPrice.bind(this)
+  }
   componentDidMount() {
     this.props.loadMugs()
   }
+  setPrice(number) {
+    return (number / 100).toFixed(2)
+  }
+  // handleSubmit(evt) {
+  //   evt.preventDefault();
+  // }
   render() {
     console.log(this.props)
     if (this.props.mugs === undefined) {
@@ -25,7 +38,7 @@ class AllMugs extends Component {
                 <img id="productPhoto" alt={mug.name} src={mug.imageUrl} />
                 <h3 className="productStyle">{mug.name}</h3>
               </Link>
-              <h4 className="productStyle">${mug.price}</h4>
+              <h4 className="productStyle">${this.setPrice(mug.price)}</h4>
               <form>
                 <label htmlFor="quantity">Quantity:</label>
                 <input type="number" id="quantity" name="quantity" min="1" />

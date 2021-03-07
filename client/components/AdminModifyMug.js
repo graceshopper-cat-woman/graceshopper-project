@@ -1,18 +1,29 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMug} from '../store/singleMug'
-import {addToCart} from '../store/cart'
+import {updateMug, deleteMug} from '../store/mug'
+import MugForm from './MugForm'
 import {Link} from 'react-router-dom'
 
-class SingleMug extends Component {
+const defaultState = {
+  name: '',
+  description: '',
+  imageUrl: 'https://dummyimage.com/300x300/000/fff',
+  price: 0,
+  color: '',
+  size: 0,
+  inventory: 0
+}
+let modified = false
+
+class AdminModifyMug extends Component {
   constructor() {
     super()
     this.setPrice = this.setPrice.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.state = {
-      quantity: 0
-    }
+    this.handleDelete = this.handleDelete.bind(this)
+    this.state = defaultState
   }
   componentDidMount() {
     this.props.loadMug(this.props.match.params.mugId)
@@ -27,8 +38,18 @@ class SingleMug extends Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.addToCart(this.props.mug.id, parseInt(this.state.quantity))
-    this.setState({quantity: 0})
+    const newMug = this.state
+    newMug.id = this.props.mug.id
+    this.props.updateMug(newMug)
+    modified = true
+    this.setState({defaultState})
+  }
+  handleDelete(evt) {
+    evt.preventDefault()
+    const deletedMug = this.state
+    deletedMug.id = this.props.mug.id
+    this.props.deleteMug(deletedMug)
+    this.setState({defaultState})
   }
   render() {
     const mug = this.props.mug || {}
@@ -46,20 +67,23 @@ class SingleMug extends Component {
             <p>{mug.description}</p>
             <p>{mug.size} oz.</p>
             <p>${this.setPrice(mug.price)}</p>
-            <form onSubmit={this.handleSubmit}>
-              <label htmlFor="quantity">Quantity:</label>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                value={this.state.quantity}
-                min="1"
-                onChange={this.handleChange}
-              />
-              <button type="submit">Add To Cart</button>
-            </form>
           </div>
         </div>
+        <MugForm
+          {...this.state}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+        {modified && <h4>Mug Updated!</h4>}
+        <Link to="/admin">
+          <button
+            className="productButton"
+            type="button"
+            onClick={this.handleDelete}
+          >
+            Delete Mug
+          </button>
+        </Link>
       </>
     )
   }
@@ -71,7 +95,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadMug: id => dispatch(fetchMug(id)),
-  addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
+  updateMug: mug => dispatch(updateMug(mug)),
+  deleteMug: mug => dispatch(deleteMug(mug))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleMug)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminModifyMug)

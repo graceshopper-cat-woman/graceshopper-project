@@ -6,9 +6,11 @@ import userReducer from './user'
 import mugReducer from './mug'
 import singleMugReducer from './singleMug'
 import cartReducer from './cart'
+import allUsersReducer from './users'
 
 const reducer = combineReducers({
   user: userReducer,
+  users: allUsersReducer,
   mugs: mugReducer,
   mug: singleMugReducer,
   cart: cartReducer
