@@ -4,7 +4,6 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Login,
-  Signup,
   UserHome,
   AllMugs,
   SingleMug,
@@ -13,7 +12,7 @@ import {
   AddMug,
   AdminModifyMug,
   Cart,
-  SignupForm,
+  Signup,
   AdminUserView,
   AdminMugView
 } from './components'
