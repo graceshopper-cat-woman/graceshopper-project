@@ -84,7 +84,7 @@ nav a {
   overflow: hidden;
 }
 
-.dropbtn {
+.dropdown .dropbtn {
   border: none;
   outline: none;
   color: #dbd8dd;
