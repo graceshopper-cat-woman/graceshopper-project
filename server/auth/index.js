@@ -3,6 +3,7 @@ const User = require('../db/models/user')
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
+  console.log('IN LOGIN POST ROUTE')
   try {
     const user = await User.findOne({where: {email: req.body.email}})
     if (!user) {
@@ -12,9 +13,11 @@ router.post('/login', async (req, res, next) => {
       console.log('Incorrect password for user:', req.body.email)
       res.status(401).send('Wrong username and/or password')
     } else {
+      console.log('User is logged in')
       req.login(user, err => (err ? next(err) : res.json(user)))
     }
   } catch (err) {
+    console.log('ERROR IN LOGIN INDEX FILE', err)
     next(err)
   }
 })
@@ -27,6 +30,7 @@ router.post('/signup', async (req, res, next) => {
     if (err.name === 'SequelizeUniqueConstraintError') {
       res.status(401).send('User already exists')
     } else {
+      console.log('ERROR IN SIGN UP INDEX FILE', err)
       next(err)
     }
   }
