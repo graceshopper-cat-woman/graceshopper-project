@@ -48,7 +48,7 @@ router.put('/add', async (req, res, next) => {
     let order
     //user cart
     if (req.user) {
-      order = await Order.findOrCreate({
+      ;[order] = await Order.findOrCreate({
         where: {
           userId: req.user.id,
           orderStatus: 'inCart'
@@ -102,6 +102,7 @@ router.put('/add', async (req, res, next) => {
       })
     }
     //send all cart items
+    if (!order) res.send('HELLO WORLD')
     res.status(201).send(order)
   } catch (error) {
     next(error)
