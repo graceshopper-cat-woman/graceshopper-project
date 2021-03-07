@@ -192,52 +192,62 @@ async function seed() {
     {
       mugId: mugs[0].id,
       orderId: orders[0].id,
-      quantity: 2
+      quantity: 2,
+      price: mugs[0].price
     },
     {
       mugId: mugs[0].id,
       orderId: orders[1].id,
-      quantity: 1
+      quantity: 1,
+      price: mugs[0].price
     },
     {
       mugId: mugs[1].id,
       orderId: orders[0].id,
-      quantity: 3
+      quantity: 3,
+      price: mugs[1].price
     },
     {
       mugId: mugs[1].id,
       orderId: orders[1].id,
-      quantity: 2
+      quantity: 2,
+      price: mugs[1].price
     },
     {
       mugId: mugs[2].id,
       orderId: orders[2].id,
-      quantity: 1
+      quantity: 1,
+      price: mugs[2].price
     },
     {
       mugId: mugs[2].id,
       orderId: orders[3].id,
-      quantity: 3
+      quantity: 3,
+      price: mugs[2].price
     },
     {
       mugId: mugs[4].id,
       orderId: orders[2].id,
-      quantity: 1
+      quantity: 1,
+      price: mugs[4].price
     },
     {
       mugId: mugs[3].id,
       orderId: orders[2].id,
-      quantity: 2
+      quantity: 2,
+      price: mugs[3].price
     },
     {
       mugId: mugs[5].id,
       orderId: orders[4].id,
-      quantity: 1
+      quantity: 1,
+      price: mugs[5].price
     },
     {
       mugId: mugs[7].id,
       orderId: orders[4].id,
-      quantity: 2
+      quantity: 2,
+      price: mugs[7].price
     }
   ]
 

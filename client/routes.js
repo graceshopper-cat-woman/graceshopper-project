@@ -4,7 +4,6 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Login,
-  Signup,
   UserHome,
   AllMugs,
   SingleMug,
@@ -12,7 +11,10 @@ import {
   AdminView,
   AddMug,
   AdminModifyMug,
-  Cart
+  Cart,
+  SignupForm,
+  AdminUserView,
+  AdminMugView
 } from './components'
 import {me} from './store'
 
@@ -31,7 +33,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/signup" component={SignupForm} />
         <Route exact path="/mugs" component={AllMugs} />
         <Route exact path="/mugs/:mugId" component={SingleMug} />
         <Route exact path="/carts" component={Cart} />
@@ -42,10 +44,12 @@ class Routes extends Component {
             <Route exact path="/mugs" component={AllMugs} />
             <Route exact path="/mugs/:mugId" component={SingleMug} />
             <Route exact path="/carts" component={Cart} />
-            {this.props.isAdmin ? (
+            {isAdmin ? (
               <Switch>
                 <Route exact path="/admin" component={AdminView} />
-                <Route exact path="/admin/add/" component={AddMug} />
+                <Route exact path="/admin/add" component={AddMug} />
+                <Route exact path="/admin/users" component={AdminUserView} />
+                <Route exact path="/admin/mugs" component={AdminMugView} />
                 <Route
                   exact
                   path="/admin/edit/:mugId"

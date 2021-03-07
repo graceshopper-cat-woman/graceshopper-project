@@ -10,49 +10,59 @@ class Cart extends Component {
       isLoading: true
     }
     this.setPrice = this.setPrice.bind(this)
+    this.totalPrice = this.totalPrice.bind(this)
   }
   setPrice(number) {
     return (number / 100).toFixed(2)
+  }
+  totalPrice(items) {
+    return items.reduce(
+      (total, item) =>
+        total + this.setPrice(item.price) * item.mugOrder.quantity,
+      0
+    )
   }
 
   componentDidMount() {
     this.props.loadCart()
     this.setState({isLoading: false})
-    console.log('COMPONENT MOUNTED')
-    console.log('MOUNTED STATE', this.state.isLoading)
   }
   render() {
-    console.log('ISLOADING RENDER -->', this.state.isLoading)
     const cart = this.props.cart || []
-    console.log('CART--->', cart)
     const loading = this.state.isLoading
     if (loading) {
       return <div>Loading...</div>
-    } else if (
-      (!loading && cart.length === 0) ||
-      (!loading && cart === 'Cart is empty')
-    ) {
+    } else if (cart.mugs === undefined || cart === 'Cart is empty') {
       return <div>Cart is Empty</div>
     } else {
       return (
-        <div>
-          {cart.map(item => (
-            <div key={item.id}>
-              <Link to={`/mugs/${item.id}`}>
-                <span>Item: {item.name}</span>
-              </Link>
-              <span>Qty:{item.quantity}</span>
-              <span>Price: {this.setPrice(item.quantity)}</span>
-            </div>
-          ))}
-        </div>
+        <>
+          <div>
+            {cart.mugs.map(item => (
+              <div key={item.id}>
+                <Link to={`/mugs/${item.id}`}>
+                  <span>{item.name}</span>
+                </Link>
+                <span>Qty:{item.mugOrder.quantity}</span>
+                <span>
+                  Price: ${this.setPrice(item.price)} x {item.mugOrder.quantity}{' '}
+                  = ${(
+                    this.setPrice(item.price) * item.mugOrder.quantity
+                  ).toFixed(2)}
+                </span>
+              </div>
+            ))}
+          </div>
+          <p>Total: ${this.totalPrice(cart.mugs).toFixed(2)}</p>
+          <Link to="/mugs">Continue shopping? </Link>
+        </>
       )
     }
   }
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart.items
 })
 
 const mapDispatchToProps = dispatch => {

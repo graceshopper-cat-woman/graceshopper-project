@@ -57,7 +57,7 @@ const createApp = () => {
       secret: process.env.SESSION_SECRET || 'my best friend is Cody',
       store: sessionStore,
       resave: false,
-      saveUninitialized: true //CHANGED FALSE TO TRUE --> KEEPS SESSION ID THE SAME
+      saveUninitialized: false //CHANGED FALSE TO TRUE --> KEEPS SESSION ID THE SAME
     })
   )
 

@@ -60,7 +60,7 @@ class AdminModifyMug extends Component {
       <>
         <div className="singleProductContainer">
           <div className="singleProductImage">
-            <img src={mug.imageUrl} alt={mug.name} />
+            <img src={`../${mug.imageUrl}`} alt={mug.name} />
           </div>
           <div className="singleProductDescription">
             <h3 className="productStyle">{mug.name}</h3>
