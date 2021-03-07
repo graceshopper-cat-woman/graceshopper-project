@@ -70,7 +70,13 @@ class AdminModifyMug extends Component {
           </div>
         </div>
         <MugForm
-          {...this.state}
+          name={mug.name}
+          description={mug.description}
+          imageUrl={`../${mug.imageUrl}`}
+          price={mug.price}
+          color={mug.color}
+          size={mug.size}
+          inventory={mug.inventory}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
