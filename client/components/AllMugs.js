@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMugs} from '../store/mug'
+import {addToCart} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 class AllMugs extends Component {
   constructor() {
     super()
-    this.state = {
-      mugQuantities: []
-    }
+    /*     this.state = {
+      quantity: 1
+    } */
     this.setPrice = this.setPrice.bind(this)
   }
   componentDidMount() {
@@ -39,11 +40,11 @@ class AllMugs extends Component {
                 <h3 className="productStyle">{mug.name}</h3>
               </Link>
               <h4 className="productStyle">${this.setPrice(mug.price)}</h4>
-              <form>
+              {/*               <form>
                 <label htmlFor="quantity">Quantity:</label>
                 <input type="number" id="quantity" name="quantity" min="1" />
               </form>
-              <button type="button">Add To Cart</button>
+              <button type="button">Add To Cart</button> */}
             </div>
           ))}
         </div>

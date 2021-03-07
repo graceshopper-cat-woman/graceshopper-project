@@ -11,7 +11,8 @@ class SingleMug extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      quantity: 0
+      quantity: 1,
+      added: false
     }
   }
   componentDidMount() {
@@ -27,8 +28,12 @@ class SingleMug extends Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.addToCart(this.props.mug.id, parseInt(this.state.quantity))
-    this.setState({quantity: 0})
+    this.props.addToCart(
+      this.state.quantity,
+      +this.props.match.params.mugId,
+      this.props.mug.price
+    )
+    this.setState({quantity: 1, added: true})
   }
   render() {
     const mug = this.props.mug || {}
@@ -44,7 +49,7 @@ class SingleMug extends Component {
           <div className="singleProductDescription">
             <h3 className="productStyle">{mug.name}</h3>
             <p>{mug.description}</p>
-            <p>{mug.size} oz.</p>
+            <p>Size: {mug.size} oz.</p>
             <p>${this.setPrice(mug.price)}</p>
             <form onSubmit={this.handleSubmit}>
               <label htmlFor="quantity">Quantity:</label>
@@ -58,6 +63,7 @@ class SingleMug extends Component {
               />
               <button type="submit">Add To Cart</button>
             </form>
+            {this.state.added ? <p>Added to cart!</p> : ''}
           </div>
         </div>
       </>
@@ -71,7 +77,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadMug: id => dispatch(fetchMug(id)),
-  addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
+  addToCart: (quantity, mugId, mugPrice) =>
+    dispatch(addToCart(quantity, mugId, mugPrice))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleMug)

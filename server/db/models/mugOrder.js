@@ -9,8 +9,8 @@ const MugOrder = db.define('mugOrder', {
     }
   },
   price: {
-    type: Sequelize.INTEGER
-    // allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 })
 
