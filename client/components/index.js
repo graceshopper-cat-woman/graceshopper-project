@@ -14,7 +14,6 @@ export {default as AddMug} from './AddMug'
 export {MugForm} from './MugForm'
 export {default as Cart} from './Cart'
 
-export {SignupForm} from './SignupForm'
+export {default as SignupForm} from './SignupForm'
 export {default as AdminModifyMug} from './AdminModifyMug'
 export {default as AdminMugView} from './AdminMugView'
-
