@@ -12,14 +12,16 @@ export const CartItem = ({item, setPrice}) => {
         <Link to={`/mugs/${item.id}`}>
           <h3>{item.name}</h3>
         </Link>
-        <p>Qty:{item.mugOrder.quantity}</p>
-        <FontAwesomeIcon id="plus" icon={['fas', 'plus-circle']} />
+        <div className="cartItemPrice">
+          <FontAwesomeIcon id="minus" icon={['fas', 'minus']} />
+          <p>Qty: {item.mugOrder.quantity}</p>
+          <FontAwesomeIcon id="plus" icon={['fas', 'plus']} />
+        </div>
         <span>
           <p>
             Price: ${setPrice(item.price)} x {item.mugOrder.quantity} = $
             {(setPrice(item.price) * item.mugOrder.quantity).toFixed(2)}
           </p>
-          <FontAwesomeIcon id="minus" icon={['fas', 'minus-circle']} />
         </span>
       </div>
       <FontAwesomeIcon id="trash" icon={['fas', 'trash-alt']} />

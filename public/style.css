@@ -370,13 +370,13 @@ h2 {
   border-top: none;
 }
 
-.cartView {
+.emptyCartView {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 }
-.cartView a {
+.emptyCartView a {
   background-color: #5f506b;
   text-decoration: none;
   color: #dbd8dd;
@@ -385,4 +385,96 @@ h2 {
   text-align: center;
   margin-right: 10%;
   margin-left: 10%;
+}
+.cartViewHeaders {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 15px;
+  margin-left: 12%;
+  margin-right: 12%;
+  padding-bottom: 20px;
+}
+.cartViewHeadersText {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bolder;
+  color: #5f506b;
+  border-bottom: #5f506b solid 2px;
+}
+
+.cartItemContainer {
+  display: flex;
+  margin-left: 20%;
+  margin-right: 20%;
+  flex-flow: row no wrap;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #aeacaf;
+  justify-content: baseline;
+  align-items: center;
+}
+.cartItemDescription {
+  display: flex;
+  width: 100%;
+  flex-flow: row-nowrap;
+  margin: auto;
+  justify-content: space-around;
+  align-items: center;
+}
+.cartItemDescription a {
+  text-decoration: none;
+  color: #657e88;
+  font-weight: bold;
+}
+#minus,
+#plus {
+  margin: 10px;
+  padding: 0;
+  color: #657e88;
+}
+#trash {
+  color: rgb(131, 24, 47);
+  width: 20px;
+  height: 20px;
+}
+#cartItemImg {
+  width: 65px;
+  height: 65px;
+  border: 2px solid #aeacaf;
+  border-radius: 50%;
+  margin-right: 2px;
+  box-shadow: 5px 5px 30px 0px #a8a7a8;
+}
+.cartItemPrice {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 2px;
+  justify-content: center;
+  align-items: baseline;
+}
+.cartViewTotal {
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-top: 25px;
+}
+
+#continue {
+  text-decoration: none;
+  background-color: #5f506b;
+  color: #dbd8dd;
+  padding: 15px;
+  border-radius: 20px;
+  width: 200px;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 15px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: none;
 }
