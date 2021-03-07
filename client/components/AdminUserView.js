@@ -25,21 +25,29 @@ class AdminUserView extends Component {
                 <h2 className="productStyle">
                   {user.firstName} {user.lastName}
                 </h2>
-                <h4 className="productStyle">{user.email}</h4>
+                <h4 className="productStyle">{user.isAdmin ? 'ADMIN' : ''}</h4>
+                <h4 className="productStyle">Email: {user.email}</h4>
                 <h4 className="productStyle">
-                  {user.isAdmin
-                    ? `${user.firstName} has administrator privileges`
-                    : `${
-                        user.firstName
-                      } does not have administrator privileges`}
+                  Shipping address:{' '}
+                  {user.shippingStreet
+                    ? user.shippingStreet +
+                      '\n' +
+                      user.shippingCity +
+                      ',' +
+                      user.shippingState +
+                      user.shippingZip
+                    : 'N/A'}
                 </h4>
                 <h4 className="productStyle">
-                  {user.firstName} shipping address: {user.shippingStreet}{' '}
-                  {user.shippingCity}, {user.shippingState} {user.shippingZip}
-                </h4>
-                <h4 className="productStyle">
-                  {user.firstName} billing address: {user.billingStreet}{' '}
-                  {user.billingCity}, {user.billingCity} {user.billingZip}
+                  Billing address:{' '}
+                  {user.billingStreet
+                    ? user.billingStreet +
+                      '\n' +
+                      user.billingCity +
+                      ',' +
+                      user.billingState +
+                      user.billingZip
+                    : 'N/A'}
                 </h4>
               </div>
             ))}

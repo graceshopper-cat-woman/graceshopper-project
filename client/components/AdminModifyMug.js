@@ -60,7 +60,7 @@ class AdminModifyMug extends Component {
       <>
         <div className="singleProductContainer">
           <div className="singleProductImage">
-            <img src={mug.imageUrl} alt={mug.name} />
+            <img src={`../${mug.imageUrl}`} alt={mug.name} />
           </div>
           <div className="singleProductDescription">
             <h3 className="productStyle">{mug.name}</h3>
@@ -70,7 +70,13 @@ class AdminModifyMug extends Component {
           </div>
         </div>
         <MugForm
-          {...this.state}
+          name={mug.name}
+          description={mug.description}
+          imageUrl={`../${mug.imageUrl}`}
+          price={mug.price}
+          color={mug.color}
+          size={mug.size}
+          inventory={mug.inventory}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />

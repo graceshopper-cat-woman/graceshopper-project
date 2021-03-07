@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 //action type
 const GET_MUGS = 'GET_MUGS'
@@ -48,6 +49,7 @@ export const addNewMug = mug => {
   return async dispatch => {
     const {data} = await axios.post('/api/mugs', mug)
     dispatch(createMug(data))
+    history.push('/admin')
   }
 }
 
@@ -55,6 +57,7 @@ export const deleteMug = mug => {
   return async dispatch => {
     await axios.delete(`/api/mugs/${mug.id}`)
     dispatch(removeMug(mug))
+    history.push('/admin')
   }
 }
 

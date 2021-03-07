@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
+const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
   <div className="navDiv">
     <h1 className="logo">Hugs&Mugs</h1>
     <nav>
@@ -19,7 +19,17 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
             <a href="#" onClick={handleClick}>
               Logout
             </a>
-            {isAdmin ? <Link to="/admin"> Admin Options </Link> : ''}
+            {isAdmin ? (
+              <div className="dropdown">
+                Admin Options
+                <div className="dropdown-content">
+                  <Link to="/admin/mugs"> View Mugs </Link>
+                  <Link to="/admin/users"> View Users </Link>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
           <div>
             <Link to="/carts">
