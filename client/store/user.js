@@ -34,20 +34,17 @@ export const auth = (userInfo, method) => async dispatch => {
   let res
   try {
     const {firstName, lastName, email, password} = userInfo
-    if (method === 'signup') {
-      res = await axios.post(`/auth/${method}`, {
-        email,
-        password,
-        firstName,
-        lastName
-      })
-    } else {
-      res = await axios.post(`/auth/${method}`, {email, password})
-    }
+    res = await axios.post(`/auth/${method}`, {
+      email,
+      password,
+      firstName,
+      lastName
+    })
   } catch (authError) {
     console.log('ERROR IN DISPATCH')
     return dispatch(getUser({error: authError}))
   }
+
   try {
     console.log('INSIDE SECOND TRY STATEMNET IN DISPATCH')
     dispatch(getUser(res.data))

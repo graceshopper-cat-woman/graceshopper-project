@@ -9,13 +9,10 @@ import {
   AllMugs,
   SingleMug,
   Landing,
-
   AdminView,
   AddMug,
   AdminModifyMug,
-  Cart,
-  SignupForm
-
+  Cart
 } from './components'
 import {me} from './store'
 
