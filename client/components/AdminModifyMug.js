@@ -12,7 +12,8 @@ const defaultState = {
   price: 0,
   color: '',
   size: 0,
-  inventory: 0
+  inventory: 0,
+  id: 0
 }
 let modified = false
 
@@ -25,8 +26,18 @@ class AdminModifyMug extends Component {
     this.handleDelete = this.handleDelete.bind(this)
     this.state = defaultState
   }
-  componentDidMount() {
-    this.props.loadMug(this.props.match.params.mugId)
+  async componentDidMount() {
+    await this.props.loadMug(this.props.match.params.mugId)
+    this.setState({
+      name: this.props.mug.name,
+      description: this.props.mug.description,
+      imageUrl: this.props.mug.imageUrl,
+      price: this.props.mug.price,
+      color: this.props.mug.color,
+      size: this.props.mug.size,
+      inventory: this.props.mug.inventory,
+      id: this.props.mug.id
+    })
   }
   setPrice(number) {
     return (number / 100).toFixed(2)
@@ -38,9 +49,7 @@ class AdminModifyMug extends Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    const newMug = this.state
-    newMug.id = this.props.mug.id
-    this.props.updateMug(newMug)
+    this.props.updateMug(this.state)
     modified = true
     this.setState({defaultState})
   }
@@ -52,7 +61,8 @@ class AdminModifyMug extends Component {
     this.setState({defaultState})
   }
   render() {
-    const mug = this.props.mug || {}
+    const mug = this.props.mug
+    console.log(this.state)
     if (!mug) {
       return <div>Loading...</div>
     }
@@ -73,18 +83,72 @@ class AdminModifyMug extends Component {
             <p>${this.setPrice(mug.price)}</p>
           </div>
         </div>
-        <MugForm
-          className="mugFormContainer"
-          name={mug.name}
-          description={mug.description}
-          imageUrl={`../${mug.imageUrl}`}
-          price={mug.price}
-          color={mug.color}
-          size={mug.size}
-          inventory={mug.inventory}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        <form id="mug-form" onSubmit={this.handleSubmit}>
+          <label htmlFor="mugName">Mug Name:</label>
+          <input
+            name="name"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.name}
+          />
+          <br />
+
+          <label htmlFor="description">Mug Description:</label>
+          <input
+            name="description"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.description}
+          />
+          <br />
+
+          <label htmlFor="imageUrl">Mug Image Url:</label>
+          <input
+            name="imageUrl"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.imageUrl}
+          />
+          <br />
+
+          <label htmlFor="price">Mug Price(In dollars and cents):</label>
+          <input
+            name="price"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.price}
+          />
+          <br />
+
+          <label htmlFor="color">Mug Color:</label>
+          <input
+            name="color"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.color}
+          />
+          <br />
+
+          <label htmlFor="size">Mug Size (oz):</label>
+          <input
+            name="size"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.size}
+          />
+          <br />
+
+          <label htmlFor="inventory">Mug Inventory (# of):</label>
+          <input
+            name="inventory"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.inventory}
+          />
+          <br />
+
+          <button type="submit">Submit</button>
+        </form>
         {modified && <h4>Mug Updated!</h4>}
         <Link to="/admin">
           <button
