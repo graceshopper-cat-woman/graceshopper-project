@@ -129,6 +129,13 @@ nav a {
   height: 28px;
   color: #dbd8dd;
 }
+#user {
+  width: 35px;
+  height: 35px;
+  color: #dbd8dd;
+  margin-left: 0px;
+  padding-left: 0px;
+}
 
 .formContainer {
   display: flex;
