@@ -12,9 +12,9 @@ export const MugForm = props => (
     <br />
 
     <label htmlFor="description">Mug Description:</label>
-    <input
+    <textarea
       name="description"
-      type="text"
+      type="textarea"
       onChange={props.handleChange}
       value={props.description}
     />
@@ -23,7 +23,6 @@ export const MugForm = props => (
     <label htmlFor="imageUrl">Mug Image Url:</label>
     <input
       name="imageUrl"
-      type="text"
       onChange={props.handleChange}
       value={props.imageUrl}
     />

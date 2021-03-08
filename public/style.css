@@ -478,3 +478,53 @@ h2 {
   text-align: center;
   border: none;
 }
+.singleProductContainerADMIN {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.singleProductImageADMIN {
+  display: flex;
+}
+.singleProductImageADMIN img {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 5px;
+}
+.singleProductDescriptionADMIN {
+  font-size: 12px;
+}
+.mugFormContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#mug-form {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 5px;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding: 10px;
+}
+#mug-form input {
+  margin-top: 5px;
+  line-height: 25px;
+}
+textarea {
+  font-family: 'Montserrat' sans-serif;
+  margin-top: 5px;
+}
+#mug-form label {
+  font-family: 'Montserrat' sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
