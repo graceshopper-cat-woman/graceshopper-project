@@ -49,7 +49,7 @@ export const addNewMug = mug => {
   return async dispatch => {
     const {data} = await axios.post('/api/mugs', mug)
     dispatch(createMug(data))
-    history.push('/admin')
+    history.push('/admin/mugs')
   }
 }
 
@@ -57,7 +57,7 @@ export const deleteMug = mug => {
   return async dispatch => {
     await axios.delete(`/api/mugs/${mug.id}`)
     dispatch(removeMug(mug))
-    history.push('/admin')
+    history.push('/admin/mugs')
   }
 }
 
@@ -65,6 +65,7 @@ export const updateMug = mug => {
   return async dispatch => {
     const {data} = await axios.put(`/api/mugs/${mug.id}`, mug)
     dispatch(editMug(data))
+    history.push('/admin/mugs')
   }
 }
 
@@ -85,6 +86,7 @@ export default function mugReducer(state = initialState, action) {
         if (mug.id === action.mug.id) {
           mug = action.mug
         }
+        return mug
       })
     default:
       return state
