@@ -140,6 +140,7 @@ router.put('/', async (req, res, next) => {
 // DELETE /api/carts/ (status 204)
 router.put('/delete', async (req, res, next) => {
   console.log('req.body--->', req.body)
+  const itemId = req.body.mugId
   try {
     const item = await MugOrder.findOne({
       where: {
@@ -147,9 +148,10 @@ router.put('/delete', async (req, res, next) => {
         mugId: req.body.mugId
       }
     })
-    console.log('ITEM TO DESTROY', item)
+    //await item.destroy()
     await item.destroy()
-    res.status(204).send(item)
+    console.log('ITEM TO DESTROY', itemId)
+    res.json(itemId)
   } catch (error) {
     console.log('ERROR DELETING', error)
     next(error)

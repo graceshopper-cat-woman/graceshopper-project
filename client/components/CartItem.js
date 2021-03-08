@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
@@ -11,7 +11,7 @@ export const CartItem = ({
   removeItem
 }) => {
   const [quantity, setQuantity] = useState(item.mugOrder.quantity)
-  console.log('item.mugOrder.quantity', item.mugOrder.quantity)
+  //const [deleted, setDeleted] = useState(false)
 
   async function handleIncrement() {
     let updated = ++item.mugOrder.quantity
@@ -31,12 +31,21 @@ export const CartItem = ({
     console.log('ORDER ID -->', orderId)
     console.log('ITEM ID -->', item.id)
     let removed = await removeItem(orderId, item.id)
-    if (removed) {
-      console.log(removed)
-      console.log('LOADING CART AGAIN')
-      await loadCart()
-    }
+    console.log('REMOVED??', removed)
+    //setDeleted(true)
+    //console.log('DELETE IN HANDLEDELETE:', deleted)
+    //await loadCart()
   }
+
+  /*   useEffect(() => {
+    async function removed() {
+      setDeleted(false)
+      await loadCart()
+      console.log('DELETE IN USEEFFECT:', deleted)
+    }
+    removed()
+    setDeleted(true)
+  }, deleted); */
 
   return (
     <div className="cartItemContainer">

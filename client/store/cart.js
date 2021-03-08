@@ -1,9 +1,9 @@
 import axios from 'axios'
-import {compose} from 'redux'
 
 //action type
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const DELETE_ITEM = 'DELETE_ITEM'
 // const UPDATE_CART = 'UPDATE_CART'
 
 const getCart = cart => ({
@@ -14,6 +14,11 @@ const getCart = cart => ({
 const _addToCart = cart => ({
   type: ADD_TO_CART,
   cart
+})
+
+const _deleteItem = itemId => ({
+  type: DELETE_ITEM,
+  itemId
 })
 
 // const _updateCart = (updatedCart) => ({
@@ -75,12 +80,14 @@ export const updateCart = (orderId, quantity, mugId, history) => {
 export const removeItem = (orderId, mugId, history) => {
   console.log('ATTEMPTING TO DELETE CART')
   console.log('DELETE THUNK ORDERID', orderId, mugId)
-  return async () => {
+  return async dispatch => {
     try {
-      await axios.put('api/carts/delete', {
+      const {data} = await axios.put('api/carts/delete', {
         orderId: orderId,
         mugId: mugId
       })
+      console.log('ITEM ID: ', data)
+      dispatch(_deleteItem(data))
       history.push('/carts')
     } catch (error) {
       console.error(error)
@@ -100,9 +107,8 @@ export default function cartReducer(state = initialState, action) {
       return {...state, items: action.cart}
     case ADD_TO_CART:
       return {...state, items: action.cart}
-    // case UPDATE_CART:
-    //   // return {...state, items: [...state.items, action.updatedCart]}
-    //   return {...state, items: action.updatedCart}
+    case DELETE_ITEM:
+      return state.items.mugs.filter(item => item.id !== +action.itemId)
     default:
       return state
   }
