@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMugs} from '../store/mug'
-import {addToCart} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 class AllMugs extends Component {

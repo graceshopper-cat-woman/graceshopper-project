@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMug} from '../store/singleMug'
 import {updateMug, deleteMug} from '../store/mug'
-import MugForm from './MugForm'
 import {Link} from 'react-router-dom'
 
 const defaultState = {
@@ -51,7 +50,6 @@ class AdminModifyMug extends Component {
     evt.preventDefault()
     this.props.updateMug(this.state)
     modified = true
-    this.setState({defaultState})
   }
   handleDelete(evt) {
     evt.preventDefault()
@@ -150,15 +148,13 @@ class AdminModifyMug extends Component {
           <button type="submit">Submit</button>
         </form>
         {modified && <h4>Mug Updated!</h4>}
-        <Link to="/admin">
-          <button
-            className="productButton"
-            type="button"
-            onClick={this.handleDelete}
-          >
-            Delete Mug
-          </button>
-        </Link>
+        <button
+          className="productButton"
+          type="button"
+          onClick={this.handleDelete}
+        >
+          Delete Mug
+        </button>
       </>
     )
   }
