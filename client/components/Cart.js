@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store/cart'
+import {fetchCart, updateCart, removeItem} from '../store/cart'
 import {Link} from 'react-router-dom'
 import {CartItem} from './CartItem'
 
@@ -37,7 +37,7 @@ class Cart extends Component {
       return (
         <div className="pageContainer">
           <div className="emptyCartView">
-            <img src="../../public/images/empty-cart.png" alt="sad mug" />
+            {/* <img src="../../public/images/empty-cart.png" alt="sad mug" /> */}
             <h3>Oh no! Your cart is currently empty :(</h3>
             <Link to="/mugs"> Find your perfect mug </Link>
           </div>
@@ -53,7 +53,15 @@ class Cart extends Component {
               <h3 className="cartViewHeadersText"> Subtotal </h3>
             </div>
             {cart.mugs.map(item => (
-              <CartItem key={item.id} item={item} setPrice={this.setPrice} />
+              <CartItem
+                key={item.id}
+                item={item}
+                setPrice={this.setPrice}
+                updateCart={this.props.updateCart}
+                orderId={cart.id}
+                loadCart={this.props.loadCart}
+                removeItem={this.props.removeItem}
+              />
             ))}
           </div>
           <p className="cartViewTotal">
@@ -72,9 +80,16 @@ const mapStateToProps = state => ({
   cart: state.cart.items
 })
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
-    loadCart: () => dispatch(fetchCart())
+    loadCart: () => dispatch(fetchCart()),
+    updateCart: (orderId, quantity, mugId) => {
+      dispatch(updateCart(orderId, quantity, mugId, history))
+    },
+    removeItem: (orderId, mugId) => {
+      console.log('DISPATCH ORDERID', orderId)
+      dispatch(removeItem(orderId, mugId, history))
+    }
   }
 }
 
