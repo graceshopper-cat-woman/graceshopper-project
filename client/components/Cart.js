@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, updateCart, removeItem} from '../store/cart'
+import {fetchCart, updateCart, removeItem, checkout} from '../store/cart'
 import {Link} from 'react-router-dom'
 import {CartItem} from './CartItem'
 
@@ -12,6 +12,7 @@ class Cart extends Component {
     }
     this.setPrice = this.setPrice.bind(this)
     this.totalPrice = this.totalPrice.bind(this)
+    this.onCheckout = this.onCheckout.bind(this)
   }
   setPrice(number) {
     return (number / 100).toFixed(2)
@@ -22,6 +23,10 @@ class Cart extends Component {
         total + this.setPrice(item.price) * item.mugOrder.quantity,
       0
     )
+  }
+  onCheckout() {
+    console.log('IN CHECKOUT')
+    this.props.checkout(this.props.cart)
   }
 
   componentDidMount() {
@@ -74,6 +79,9 @@ class Cart extends Component {
           <Link className="cartViewTotal" id="continue" to="/mugs">
             Continue shopping?{' '}
           </Link>
+          <button type="button" onClick={this.onCheckout}>
+            <Link to="/carts/order/confirmation">Checkout</Link>
+          </button>
         </>
       )
     }
@@ -93,6 +101,9 @@ const mapDispatchToProps = (dispatch, {history}) => {
     removeItem: (orderId, mugId) => {
       console.log('DISPATCH ORDERID', orderId)
       dispatch(removeItem(orderId, mugId, history))
+    },
+    checkout: cart => {
+      dispatch(checkout(cart))
     }
   }
 }

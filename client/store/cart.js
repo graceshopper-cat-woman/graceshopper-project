@@ -4,6 +4,7 @@ import axios from 'axios'
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_ITEM = 'DELETE_ITEM'
+const CHECKOUT = 'CHECKOUT'
 // const UPDATE_CART = 'UPDATE_CART'
 
 const getCart = cart => ({
@@ -19,6 +20,11 @@ const _addToCart = cart => ({
 const _deleteItem = itemId => ({
   type: DELETE_ITEM,
   itemId
+})
+
+const _checkout = cart => ({
+  type: CHECKOUT,
+  cart
 })
 
 // const _updateCart = (updatedCart) => ({
@@ -95,6 +101,19 @@ export const removeItem = (orderId, mugId, history) => {
   }
 }
 
+export const checkout = cart => {
+  return async dispatch => {
+    try {
+      console.log('CART IN THUNK', cart)
+      const {data} = await axios.put('/api/carts/checkout', {order: cart})
+      console.log(data)
+      dispatch(_checkout(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 //INITIAL STATE
 let initialState = {
   items: []
@@ -115,6 +134,8 @@ export default function cartReducer(state = initialState, action) {
           mugs: state.items.mugs.filter(item => item.id !== +action.itemId)
         }
       }
+    case CHECKOUT:
+      return {...state, items: action.cart}
     default:
       return state
   }

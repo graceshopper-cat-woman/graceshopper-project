@@ -167,18 +167,21 @@ router.put('/checkout', async (req, res, next) => {
         orderStatus: 'inCart'
       }
     })
+
     //update inventory
     let purchasedMugs = await MugOrder.findAll({
       where: {
         orderId: req.body.order.id
-      },
-      include: {
-        model: Mug
       }
     })
-    purchasedMugs.mugs.map(async (mug, idx) => {
-      await mug.update({inventory: mug.inventory - purchasedMugs[idx].quantity})
+
+    purchasedMugs.map(async mugOrder => {
+      //find each mug with matching orderid, mugid
+      let mug = await Mug.findByPk(mugOrder.mugId)
+      await mug.update({inventory: mug.inventory - mugOrder.quantity})
     })
+    console.log('PURCHASES-->', purchasedMugs)
+
     res.status(201).send(await purchases.update({orderStatus: 'processing'}))
   } catch (error) {
     next(error)

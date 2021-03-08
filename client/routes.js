@@ -14,7 +14,9 @@ import {
   Cart,
   Signup,
   AdminUserView,
-  AdminMugView
+  AdminMugView,
+  Checkout,
+  OrderConfirmation
 } from './components'
 import {me} from './store'
 
@@ -40,6 +42,12 @@ class Routes extends Component {
         <Route exact path="/mugs" component={AllMugs} />
         <Route exact path="/mugs/:mugId" component={SingleMug} />
         <Route exact path="/carts" component={Cart} />
+        <Route exact path="/carts/checkout" component={Checkout} />
+        <Route
+          exact
+          path="/carts/order/confirmation"
+          component={OrderConfirmation}
+        />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -47,6 +55,12 @@ class Routes extends Component {
             <Route exact path="/mugs" component={AllMugs} />
             <Route exact path="/mugs/:mugId" component={SingleMug} />
             <Route exact path="/carts" component={Cart} />
+            <Route exact path="/carts/checkout" component={Checkout} />
+            <Route
+              exact
+              path="/carts/order/confirmation"
+              component={OrderConfirmation}
+            />
             {isAdmin ? (
               <Switch>
                 <Route exact path="/admin" component={AdminView} />
