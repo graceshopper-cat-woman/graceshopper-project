@@ -23,7 +23,8 @@ router.get('/', async (req, res, next) => {
     } else if (req.session.guestCart) {
       order = await Order.findOne({
         where: {
-          id: req.session.guestCart
+          id: req.session.guestCart,
+          orderStatus: 'inCart'
         },
         include: {
           model: Mug
@@ -180,7 +181,6 @@ router.put('/checkout', async (req, res, next) => {
       let mug = await Mug.findByPk(mugOrder.mugId)
       await mug.update({inventory: mug.inventory - mugOrder.quantity})
     })
-    console.log('PURCHASES-->', purchasedMugs)
 
     res.status(201).send(await purchases.update({orderStatus: 'processing'}))
   } catch (error) {
