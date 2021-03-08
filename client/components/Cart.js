@@ -33,7 +33,11 @@ class Cart extends Component {
     const loading = this.state.isLoading
     if (loading) {
       return <div>Loading...</div>
-    } else if (cart.mugs === undefined || cart === 'Cart is empty') {
+    } else if (
+      cart.mugs === undefined ||
+      cart === 'Cart is empty' ||
+      cart.mugs.length === 0
+    ) {
       return (
         <div className="pageContainer">
           <div className="emptyCartView">

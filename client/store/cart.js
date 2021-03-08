@@ -108,7 +108,13 @@ export default function cartReducer(state = initialState, action) {
     case ADD_TO_CART:
       return {...state, items: action.cart}
     case DELETE_ITEM:
-      return state.items.mugs.filter(item => item.id !== +action.itemId)
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          mugs: state.items.mugs.filter(item => item.id !== +action.itemId)
+        }
+      }
     default:
       return state
   }
