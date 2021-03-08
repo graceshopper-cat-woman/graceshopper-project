@@ -182,7 +182,13 @@ router.put('/checkout', async (req, res, next) => {
       await mug.update({inventory: mug.inventory - mugOrder.quantity})
     })
 
-    res.status(201).send(await purchases.update({orderStatus: 'processing'}))
+    const updatedPurchases = await purchases.update({orderStatus: 'processing'})
+
+    if (updatedPurchases.userId === null) {
+      req.session.destroy()
+    }
+
+    res.status(201).send(updatedPurchases)
   } catch (error) {
     next(error)
   }
