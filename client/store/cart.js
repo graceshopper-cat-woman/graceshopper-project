@@ -1,8 +1,10 @@
 import axios from 'axios'
+import {compose} from 'redux'
 
 //action type
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+// const UPDATE_CART = 'UPDATE_CART'
 
 const getCart = cart => ({
   type: GET_CART,
@@ -14,6 +16,10 @@ const _addToCart = cart => ({
   cart
 })
 
+// const _updateCart = (updatedCart) => ({
+//   type: UPDATE_CART,
+//   updatedCart,
+// })
 //THUNK CREATOR
 export const fetchCart = () => {
   return async dispatch => {
@@ -42,6 +48,46 @@ export const addToCart = (quantity, mugId, mugPrice) => {
   }
 }
 
+export const updateCart = (orderId, quantity, mugId, history) => {
+  return async () => {
+    try {
+      console.log('TRYING UPDATE CART FUNC')
+      const {data} = await axios.put('/api/carts', {
+        orderId: orderId,
+        quantity: quantity,
+        mugId: mugId
+      })
+      if (!data) {
+        console.log('NO DATA FOUND')
+      }
+      // fetchCart()
+      // dispatch(_updateCart(data))
+      if (data) {
+        history.push('/carts')
+      }
+    } catch (error) {
+      console.log('ERROR', error)
+    }
+  }
+}
+
+//Delete Button inside cart view
+export const removeItem = (orderId, mugId, history) => {
+  console.log('ATTEMPTING TO DELETE CART')
+  console.log('DELETE THUNK ORDERID', orderId, mugId)
+  return async () => {
+    try {
+      await axios.put('api/carts/delete', {
+        orderId: orderId,
+        mugId: mugId
+      })
+      history.push('/carts')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 //INITIAL STATE
 let initialState = {
   items: []
@@ -54,6 +100,9 @@ export default function cartReducer(state = initialState, action) {
       return {...state, items: action.cart}
     case ADD_TO_CART:
       return {...state, items: action.cart}
+    // case UPDATE_CART:
+    //   // return {...state, items: [...state.items, action.updatedCart]}
+    //   return {...state, items: action.updatedCart}
     default:
       return state
   }

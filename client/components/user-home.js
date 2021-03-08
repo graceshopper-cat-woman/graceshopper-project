@@ -1,17 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Landing} from './Landing'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {firstName} = props
 
   return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
+    <>
+      <div>
+        <Landing firstName={firstName} />
+      </div>
+    </>
   )
 }
 
@@ -20,7 +23,8 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    firstName: state.user.firstName
   }
 }
 
@@ -30,5 +34,6 @@ export default connect(mapState)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  email: PropTypes.string,
+  firstName: PropTypes.string
 }

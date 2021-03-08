@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store/cart'
+import {fetchCart, updateCart, removeItem} from '../store/cart'
 import {Link} from 'react-router-dom'
+import {CartItem} from './CartItem'
 
 class Cart extends Component {
   constructor() {
@@ -33,28 +34,42 @@ class Cart extends Component {
     if (loading) {
       return <div>Loading...</div>
     } else if (cart.mugs === undefined || cart === 'Cart is empty') {
-      return <div>Cart is Empty</div>
+      return (
+        <div className="pageContainer">
+          <div className="emptyCartView">
+            {/* <img src="../../public/images/empty-cart.png" alt="sad mug" /> */}
+            <h3>Oh no! Your cart is currently empty :(</h3>
+            <Link to="/mugs"> Find your perfect mug </Link>
+          </div>
+        </div>
+      )
     } else {
       return (
         <>
-          <div>
+          <div className="cartViewItems">
+            <div className="cartViewHeaders">
+              <h3 className="cartViewHeadersText"> Item </h3>
+              <h3 className="cartViewHeadersText"> Quantity </h3>
+              <h3 className="cartViewHeadersText"> Subtotal </h3>
+            </div>
             {cart.mugs.map(item => (
-              <div key={item.id}>
-                <Link to={`/mugs/${item.id}`}>
-                  <span>{item.name}</span>
-                </Link>
-                <span>Qty:{item.mugOrder.quantity}</span>
-                <span>
-                  Price: ${this.setPrice(item.price)} x {item.mugOrder.quantity}{' '}
-                  = ${(
-                    this.setPrice(item.price) * item.mugOrder.quantity
-                  ).toFixed(2)}
-                </span>
-              </div>
+              <CartItem
+                key={item.id}
+                item={item}
+                setPrice={this.setPrice}
+                updateCart={this.props.updateCart}
+                orderId={cart.id}
+                loadCart={this.props.loadCart}
+                removeItem={this.props.removeItem}
+              />
             ))}
           </div>
-          <p>Total: ${this.totalPrice(cart.mugs).toFixed(2)}</p>
-          <Link to="/mugs">Continue shopping? </Link>
+          <p className="cartViewTotal">
+            Total: ${this.totalPrice(cart.mugs).toFixed(2)}
+          </p>
+          <Link className="cartViewTotal" id="continue" to="/mugs">
+            Continue shopping?{' '}
+          </Link>
         </>
       )
     }
@@ -65,9 +80,16 @@ const mapStateToProps = state => ({
   cart: state.cart.items
 })
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
-    loadCart: () => dispatch(fetchCart())
+    loadCart: () => dispatch(fetchCart()),
+    updateCart: (orderId, quantity, mugId) => {
+      dispatch(updateCart(orderId, quantity, mugId, history))
+    },
+    removeItem: (orderId, mugId) => {
+      console.log('DISPATCH ORDERID', orderId)
+      dispatch(removeItem(orderId, mugId, history))
+    }
   }
 }
 

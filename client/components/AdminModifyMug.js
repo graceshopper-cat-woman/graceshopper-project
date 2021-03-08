@@ -68,11 +68,15 @@ class AdminModifyMug extends Component {
     }
     return (
       <>
-        <div className="singleProductContainer">
-          <div className="singleProductImage">
-            <img src={`../${mug.imageUrl}`} alt={mug.name} />
+        <div className="singleProductContainerADMIN">
+          <div className="singleProductImageADMIN">
+            <img
+              className="singleProductImageADMIN"
+              src={`../${mug.imageUrl}`}
+              alt={mug.name}
+            />
           </div>
-          <div className="singleProductDescription">
+          <div className="singleProductDescriptionADMIN">
             <h3 className="productStyle">{mug.name}</h3>
             <p>{mug.description}</p>
             <p>{mug.size} oz.</p>
