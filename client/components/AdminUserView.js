@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getUsers} from '../store/users'
-import {Link} from 'react-router-dom'
 
 class AdminUserView extends Component {
   componentDidMount() {

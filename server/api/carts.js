@@ -146,7 +146,7 @@ router.put('/delete', async (req, res, next) => {
         mugId: req.body.mugId
       }
     })
-    //await item.destroy()
+
     await item.destroy()
     res.sendStatus(204).json(itemId)
   } catch (error) {

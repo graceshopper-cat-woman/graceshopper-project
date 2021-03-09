@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const {NormalModuleReplacementPlugin} = require('webpack')
 const {Mug} = require('../db/models')
 const adminsOnly = require('../utils/adminsOnly')
 module.exports = router

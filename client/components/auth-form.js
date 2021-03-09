@@ -78,9 +78,6 @@ const mapDispatch = dispatch => {
         password: evt.target.password.value
       }
       if (formName === 'signup') {
-        // if (evt.target.confirmPassword.value !== info.password) {
-        //   return
-        // }
         info.firstName = evt.target.firstName.value
         info.lastName = evt.target.lastName.value
       }

@@ -5,7 +5,6 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_ITEM = 'DELETE_ITEM'
 const CHECKOUT = 'CHECKOUT'
-// const UPDATE_CART = 'UPDATE_CART'
 
 const getCart = cart => ({
   type: GET_CART,
@@ -27,10 +26,6 @@ const _checkout = cart => ({
   cart
 })
 
-// const _updateCart = (updatedCart) => ({
-//   type: UPDATE_CART,
-//   updatedCart,
-// })
 //THUNK CREATOR
 export const fetchCart = () => {
   return async dispatch => {
