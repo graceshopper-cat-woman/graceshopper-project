@@ -1,4 +1,5 @@
 import React from 'react'
+import anime from 'animejs/lib/anime.min.js'
 
 export function Landing({firstName}) {
   if (firstName) {
@@ -29,3 +30,8 @@ export function Landing({firstName}) {
     </>
   )
 }
+
+anime({
+  targets: '#hero-text',
+  translateX: [250, 100]
+})

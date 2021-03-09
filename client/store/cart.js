@@ -62,17 +62,12 @@ export const addToCart = (quantity, mugId, mugPrice) => {
 export const updateCart = (orderId, quantity, mugId, history) => {
   return async () => {
     try {
-      console.log('TRYING UPDATE CART FUNC')
       const {data} = await axios.put('/api/carts', {
         orderId: orderId,
         quantity: quantity,
         mugId: mugId
       })
-      if (!data) {
-        console.log('NO DATA FOUND')
-      }
-      // fetchCart()
-      // dispatch(_updateCart(data))
+
       if (data) {
         history.push('/carts')
       }
@@ -84,15 +79,13 @@ export const updateCart = (orderId, quantity, mugId, history) => {
 
 //Delete Button inside cart view
 export const removeItem = (orderId, mugId, history) => {
-  console.log('ATTEMPTING TO DELETE CART')
-  console.log('DELETE THUNK ORDERID', orderId, mugId)
   return async dispatch => {
     try {
       const {data} = await axios.put('api/carts/delete', {
         orderId: orderId,
         mugId: mugId
       })
-      console.log('ITEM ID: ', data)
+
       dispatch(_deleteItem(data))
       history.push('/carts')
     } catch (error) {
@@ -104,7 +97,6 @@ export const removeItem = (orderId, mugId, history) => {
 export const checkout = cart => {
   return async dispatch => {
     try {
-      console.log('CART IN THUNK', cart)
       const {data} = await axios.put('/api/carts/checkout', {order: cart})
       console.log(data)
       dispatch(_checkout(data))

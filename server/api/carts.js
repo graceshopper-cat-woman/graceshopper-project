@@ -103,7 +103,7 @@ router.put('/add', async (req, res, next) => {
       })
     }
     //send all cart items
-    if (!order) res.send('HELLO WORLD')
+
     res.status(201).send(order)
   } catch (error) {
     next(error)
@@ -113,7 +113,6 @@ router.put('/add', async (req, res, next) => {
 // increment/decrement a product IN cart
 // PUT api/carts (status 201)
 router.put('/', async (req, res, next) => {
-  console.log('INSIDE PUT ROUTE')
   let item
   try {
     item = await MugOrder.findOne({
@@ -133,14 +132,12 @@ router.put('/', async (req, res, next) => {
       res.sendStatus(204)
     }
   } catch (error) {
-    console.log('REQ.BODY ERROR')
     next(error)
   }
 })
 // remove a product completely from cart
 // DELETE /api/carts/ (status 204)
 router.put('/delete', async (req, res, next) => {
-  console.log('req.body--->', req.body)
   const itemId = req.body.mugId
   try {
     const item = await MugOrder.findOne({
@@ -151,10 +148,8 @@ router.put('/delete', async (req, res, next) => {
     })
     //await item.destroy()
     await item.destroy()
-    console.log('ITEM TO DESTROY', itemId)
-    res.json(itemId)
+    res.sendStatus(204).json(itemId)
   } catch (error) {
-    console.log('ERROR DELETING', error)
     next(error)
   }
 })

@@ -21,7 +21,6 @@ class AllMugs extends Component {
   //   evt.preventDefault();
   // }
   render() {
-    console.log(this.props)
     if (this.props.mugs === undefined) {
       return (
         <div className="pageContainer">

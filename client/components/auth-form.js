@@ -84,7 +84,6 @@ const mapDispatch = dispatch => {
         info.firstName = evt.target.firstName.value
         info.lastName = evt.target.lastName.value
       }
-      console.log('DISPATCHING W/ INFO FROM FORM')
       dispatch(auth(info, formName))
     }
   }

@@ -24,7 +24,6 @@ class AdminMugView extends Component {
       )
     } */
     const mugs = this.props.mugs || []
-    console.log('MUGS-->', mugs)
     if (mugs.length === 0) {
       return <div>Loading...</div>
     }

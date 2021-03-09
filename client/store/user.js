@@ -41,12 +41,10 @@ export const auth = (userInfo, method) => async dispatch => {
       lastName
     })
   } catch (authError) {
-    console.log('ERROR IN DISPATCH')
     return dispatch(getUser({error: authError}))
   }
 
   try {
-    console.log('INSIDE SECOND TRY STATEMNET IN DISPATCH')
     dispatch(getUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {

@@ -9,7 +9,6 @@ class AdminUserView extends Component {
   }
   render() {
     const users = this.props.users
-    console.log(users)
     if (users === undefined) {
       return (
         <div className="pageContainer">
