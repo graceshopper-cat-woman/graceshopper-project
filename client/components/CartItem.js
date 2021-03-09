@@ -28,7 +28,7 @@ export const CartItem = ({
     }
   }
   async function handleDelete() {
-    let removed = await removeItem(orderId, item.id)
+    await removeItem(orderId, item.id)
   }
 
   return (
@@ -41,18 +41,13 @@ export const CartItem = ({
           <h3>{item.name}</h3>
         </Link>
         <div className="cartItemPrice" id={item.id}>
-          <FontAwesomeIcon
-            id="minus"
-            mug={item.id}
-            icon={['fas', 'minus']}
-            onClick={handleDecrement}
-          />
+          <span id="iconContainer" onClick={handleDecrement}>
+            <FontAwesomeIcon id="minus" mug={item.id} icon={['fas', 'minus']} />
+          </span>
           <p>{item.mugOrder.quantity}</p>
-          <FontAwesomeIcon
-            id="plus"
-            icon={['fas', 'plus']}
-            onClick={handleIncrement}
-          />
+          <span id="iconContainer" onClick={handleIncrement}>
+            <FontAwesomeIcon id="plus" icon={['fas', 'plus']} />
+          </span>
         </div>
         <span>
           <p>
@@ -61,13 +56,13 @@ export const CartItem = ({
           </p>
         </span>
       </div>
-
-      <FontAwesomeIcon
-        id="trash"
-        name={item.id}
-        icon={['fas', 'trash-alt']}
-        onClick={handleDelete}
-      />
+      <span id="iconContainer" onClick={handleDelete}>
+        <FontAwesomeIcon
+          id="trash"
+          name={item.id}
+          icon={['fas', 'trash-alt']}
+        />
+      </span>
     </div>
   )
 }
