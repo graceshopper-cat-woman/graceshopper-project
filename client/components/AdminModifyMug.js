@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMug} from '../store/singleMug'
 import {updateMug, deleteMug} from '../store/mug'
-import {Link} from 'react-router-dom'
 
 const defaultState = {
   name: '',
@@ -60,7 +59,7 @@ class AdminModifyMug extends Component {
   }
   render() {
     const mug = this.props.mug
-    console.log(this.state)
+
     if (!mug) {
       return <div>Loading...</div>
     }

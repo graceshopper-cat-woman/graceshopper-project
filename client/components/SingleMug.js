@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMug} from '../store/singleMug'
 import {addToCart} from '../store/cart'
-import {Link} from 'react-router-dom'
 
 class SingleMug extends Component {
   constructor() {

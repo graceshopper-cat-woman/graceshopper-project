@@ -25,7 +25,6 @@ class Cart extends Component {
     )
   }
   onCheckout() {
-    console.log('IN CHECKOUT')
     this.props.checkout(this.props.cart)
   }
 
@@ -99,7 +98,6 @@ const mapDispatchToProps = (dispatch, {history}) => {
       dispatch(updateCart(orderId, quantity, mugId, history))
     },
     removeItem: (orderId, mugId) => {
-      console.log('DISPATCH ORDERID', orderId)
       dispatch(removeItem(orderId, mugId, history))
     },
     checkout: cart => {

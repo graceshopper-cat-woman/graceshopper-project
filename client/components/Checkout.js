@@ -6,8 +6,6 @@ import {fetchCart, checkout} from '../store/cart'
 class Checkout extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props)
-
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -17,15 +15,11 @@ class Checkout extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    console.log('SUBMITTED')
     this.props.checkout(this.props.order)
   }
 
   render() {
-    console.log('PROPS IN RENDER', this.props)
     const order = this.props.order
-    console.log('ORDER IN RENDER', order)
-    console.log('ORDER STATUS', order.items)
     return (
       <>
         <div className="checkout-form">

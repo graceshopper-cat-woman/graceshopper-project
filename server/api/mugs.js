@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const {NormalModuleReplacementPlugin} = require('webpack')
 const {Mug} = require('../db/models')
 const adminsOnly = require('../utils/adminsOnly')
 module.exports = router
@@ -8,8 +7,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const mugs = await Mug.findAll()
-    //console.log('REQ.SESSION.ID IN ALL MUGS-->', req.session.id)
-    res.json(mugs)
+    res.status(200).json(mugs)
   } catch (error) {
     next(error)
   }

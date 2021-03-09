@@ -28,24 +28,8 @@ export const CartItem = ({
     }
   }
   async function handleDelete() {
-    console.log('ORDER ID -->', orderId)
-    console.log('ITEM ID -->', item.id)
     let removed = await removeItem(orderId, item.id)
-    console.log('REMOVED??', removed)
-    //setDeleted(true)
-    //console.log('DELETE IN HANDLEDELETE:', deleted)
-    //await loadCart()
   }
-
-  /*   useEffect(() => {
-    async function removed() {
-      setDeleted(false)
-      await loadCart()
-      console.log('DELETE IN USEEFFECT:', deleted)
-    }
-    removed()
-    setDeleted(true)
-  }, deleted); */
 
   return (
     <div className="cartItemContainer">

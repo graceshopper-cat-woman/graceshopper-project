@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getUsers} from '../store/users'
-import {Link} from 'react-router-dom'
 
 class AdminUserView extends Component {
   componentDidMount() {
@@ -9,7 +8,6 @@ class AdminUserView extends Component {
   }
   render() {
     const users = this.props.users
-    console.log(users)
     if (users === undefined) {
       return (
         <div className="pageContainer">
