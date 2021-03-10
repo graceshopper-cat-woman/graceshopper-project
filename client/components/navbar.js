@@ -34,7 +34,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => {
               </div>
               <Link to="/mugs"> Products </Link>
               {isAdmin ? (
-                <div className="dropdown">
+                <div className="dropdown admin">
                   Admin Options
                   <div className="dropdown-content">
                     <Link to="/admin/mugs"> View Mugs </Link>
@@ -85,7 +85,9 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout())
+      dispatch(
+
+())
     },
     loadUser: userId => dispatch(fetchLoggedInUser(userId))
   }

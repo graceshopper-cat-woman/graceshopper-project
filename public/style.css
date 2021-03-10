@@ -44,6 +44,10 @@ button:focus {
   color: #dbd8dd;
   cursor: pointer;
 }
+button-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
 nav {
   background-color: #5f506b;
   display: flex;
@@ -76,9 +80,10 @@ nav a:focus {
 }
 .navLeft {
   display: flex;
-  margin-left: 10px;
   margin-right: 10px;
-  margin-left: 10px;
+  margin-left: 8px;
+  padding-top: 0px;
+  line-height: 15px;
   justify-content: space-around;
 }
 .navDiv {
@@ -89,23 +94,21 @@ nav a:focus {
 }
 
 .dropdown {
-  float: left;
+  display: inline-block;
+  text-align: center;
   overflow: hidden;
-  line-height: 20px;
+  line-height: 18px;
   text-decoration: none;
-  flex-direction: row;
-  justify-content: space-around;
+  font-weight: 500;
   color: #dbd8dd;
   font-size: 18px;
-  padding: 0px 15px;
+  margin-top: 12px;
+  margin-bottom: 2px;
+  padding: 0px 10px;
 }
-
-.dropdown .dropbtn {
-  border: none;
-  outline: none;
-  color: #dbd8dd;
-  padding: 0px 15px;
-  background-color: inherit;
+.admin {
+  margin-top: 17px;
+  margin-bottom: 0px;
 }
 
 .dropdown-content {
@@ -126,6 +129,8 @@ nav a:focus {
 }
 
 .dropdown-content a:hover {
+  float: none;
+  display: block;
   background-color: #ddd;
 }
 
@@ -139,11 +144,14 @@ nav a:focus {
   color: #dbd8dd;
 }
 #user {
-  width: 35px;
-  height: 35px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
   color: #dbd8dd;
   margin-left: 0px;
-  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 8px;
+  padding: 0px;
 }
 
 .formContainer {
