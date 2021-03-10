@@ -7,13 +7,15 @@ import mugReducer from './mug'
 import singleMugReducer from './singleMug'
 import cartReducer from './cart'
 import allUsersReducer from './users'
+import orderReducer from './order'
 
 const reducer = combineReducers({
   user: userReducer,
   users: allUsersReducer,
   mugs: mugReducer,
   mug: singleMugReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  order: orderReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -24,3 +26,4 @@ export default store
 export * from './user'
 export * from './mug'
 export * from './cart'
+export * from './order'
