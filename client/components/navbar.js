@@ -7,13 +7,17 @@ import {logout} from '../store'
 import {fetchLoggedInUser} from '../store/user'
 
 const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => {
-  console.log('USER  ID-->', user.id)
-  console.log('IS ADMIN-->', isAdmin)
   return (
     <div className="navDiv">
-      <Link to="/">
-        <h1 className="logo">Mugs&Hugs</h1>
-      </Link>
+      {isLoggedIn ? (
+        <Link to="/home">
+          <h1 className="logo">Mugs&Hugs</h1>
+        </Link>
+      ) : (
+        <Link to="/">
+          <h1 className="logo">Mugs&Hugs</h1>
+        </Link>
+      )}
       <nav>
         {isLoggedIn ? (
           <>
@@ -22,16 +26,13 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => {
               <div className="dropdown">
                 <FontAwesomeIcon id="user" icon="user-circle" />
                 <div className="dropdown-content">
-                  <Link to="/"> Edit Your Profile </Link>
                   <Link to={`/orders/user/${user.id}`}> Order History </Link>
+                  <a href="#" onClick={handleClick}>
+                    Logout
+                  </a>
                 </div>
               </div>
-
-              <Link to="/home">Home</Link>
-              <Link to="/mugs"> View All </Link>
-              <a href="#" onClick={handleClick}>
-                Logout
-              </a>
+              <Link to="/mugs"> Products </Link>
               {isAdmin ? (
                 <div className="dropdown">
                   Admin Options
