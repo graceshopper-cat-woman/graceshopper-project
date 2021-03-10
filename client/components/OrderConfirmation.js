@@ -5,16 +5,19 @@ import {Link} from 'react-router-dom'
 class OrderConfirmation extends React.Component {
   render() {
     const user = this.props.user
-    const order = this.props.order
+    const cart = this.props.cart
 
     return (
       <div>
         <h1>
-          {!user
-            ? `Thank you for shopping with us!`
-            : `Thank you for shopping with us, ${user.firstName}!`}
+          {user.firstName && cart.number
+            ? `Thank you for shopping with us, ${user.firstName}!`
+            : `Thank you for shopping with us!`}
         </h1>
-        <h1>{order ? `Your order number is ${order.items.number}` : ``}</h1>
+        <h1>{`Thank you for shopping with us! Your order number is ${
+          cart.items.number
+        }`}</h1>
+
         <Link className="cartViewTotal" id="continue" to="/mugs">
           Continue shopping?{' '}
         </Link>
@@ -25,7 +28,7 @@ class OrderConfirmation extends React.Component {
 
 const mapState = state => {
   return {
-    order: state.cart,
+    cart: state.cart,
     user: state.user
   }
 }
