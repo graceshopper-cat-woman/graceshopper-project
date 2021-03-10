@@ -15,6 +15,7 @@ export {MugForm} from './MugForm'
 export {default as Cart} from './Cart'
 export {default as Checkout} from './Checkout'
 export {OrderConfirmation} from './OrderConfirmation'
+export {default as OrderHistory} from './OrderHistory'
 
 export {default as SignupForm} from './SignupForm'
 export {default as AdminModifyMug} from './AdminModifyMug'

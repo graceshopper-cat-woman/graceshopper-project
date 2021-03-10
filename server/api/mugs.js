@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Mug, MugOrder} = require('../db/models')
+const {Mug} = require('../db/models')
 const adminsOnly = require('../utils/adminsOnly')
 module.exports = router
 

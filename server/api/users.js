@@ -17,7 +17,7 @@ router.get('/', adminsOnly, async (req, res, next) => {
   }
 })
 
-// GET single User & order history
+// GET single User
 // GET /api/users/:userId
 router.get('/:userId', adminsOrUsers, async (req, res, next) => {
   try {
@@ -29,26 +29,6 @@ router.get('/:userId', adminsOrUsers, async (req, res, next) => {
       res.status(404).send('This user does not exist!')
     }
     res.send(user)
-  } catch (error) {
-    next(error)
-  }
-})
-
-// GET single user's submitted orders
-// GET /api/users/:userId/orders
-router.get('/:userId/orders', adminsOrUsers, async (req, res, next) => {
-  try {
-    const orders = await Order.findAll({
-      where: {
-        userId: req.params.userId,
-        orderStatus: ['processing', 'shipped', 'delivered']
-      },
-      include: {model: Mug}
-    })
-    if (!orders) {
-      res.status(404).send('No orders found on server')
-    }
-    res.send(orders)
   } catch (error) {
     next(error)
   }
