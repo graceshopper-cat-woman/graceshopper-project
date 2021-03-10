@@ -9,11 +9,10 @@ export {Login, Signup} from './auth-form'
 export {default as AllMugs} from './AllMugs'
 export {default as SingleMug} from './SingleMug'
 export {Landing} from './Landing'
-export {default as AdminView} from './AdminView'
+
 export {default as AddMug} from './AddMug'
 export {MugForm} from './MugForm'
 export {default as Cart} from './Cart'
-export {default as Checkout} from './Checkout'
 export {default as OrderConfirmation} from './OrderConfirmation'
 export {default as OrderHistory} from './OrderHistory'
 

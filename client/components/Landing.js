@@ -2,7 +2,6 @@ import React from 'react'
 
 export function Landing({firstName}) {
   if (firstName) {
-    console.log('firstName --> ', firstName)
     return (
       <>
         <div>
@@ -29,9 +28,3 @@ export function Landing({firstName}) {
     </>
   )
 }
-
-/* anime({
-  targets: '#hero-text',
-  translateX: [250, 100]
-})
- */

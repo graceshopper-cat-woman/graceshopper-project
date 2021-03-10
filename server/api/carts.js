@@ -8,7 +8,6 @@ router.get('/', async (req, res, next) => {
   try {
     let order
     //user cart
-
     if (req.user) {
       order = await Order.findOne({
         where: {
@@ -103,7 +102,6 @@ router.put('/add', async (req, res, next) => {
       })
     }
     //send all cart items
-
     res.status(201).send(order)
   } catch (error) {
     next(error)
@@ -154,7 +152,7 @@ router.put('/delete', async (req, res, next) => {
   }
 })
 // checkout
-// PUT /api/carts/checkout --> update order status to processing (status 201)
+// PUT /api/carts/checkout
 router.put('/checkout', async (req, res, next) => {
   try {
     let purchases = await Order.findOne({

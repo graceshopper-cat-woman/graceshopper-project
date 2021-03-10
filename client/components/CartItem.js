@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
@@ -11,7 +11,6 @@ export const CartItem = ({
   removeItem
 }) => {
   const [quantity, setQuantity] = useState(item.mugOrder.quantity)
-  //const [deleted, setDeleted] = useState(false)
 
   async function handleIncrement() {
     let updated = ++item.mugOrder.quantity
