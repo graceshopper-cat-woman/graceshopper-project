@@ -7,8 +7,6 @@ import {logout} from '../store'
 import {fetchLoggedInUser} from '../store/user'
 
 const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => {
-  console.log('USER  ID-->', user.id)
-  console.log('IS ADMIN-->', isAdmin)
   return (
     <div className="navDiv">
       <Link to="/">

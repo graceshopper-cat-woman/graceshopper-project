@@ -41,7 +41,6 @@ class Cart extends Component {
 
   async onCheckout() {
     await this.checkStock()
-    console.log('ERRORS STATE-->', this.state.stockError)
     if (this.state.stockError.length === 0) {
       this.props.checkout(this.props.cart)
       this.props.history.push('/carts/order/confirmation')
@@ -98,16 +97,16 @@ class Cart extends Component {
           <p className="cartViewTotal">
             Total: ${this.totalPrice(cart.mugs).toFixed(2)}
           </p>
-           <div className="cartBtnContainer">
-               <Link id="purpleLinkBtn" to="/mugs">
-            Continue shopping?{' '}
-                </Link>
-          <button id="tealBtn" type="button" onClick={this.onCheckout}>
-            Checkout
-          </button>
-          {this.state.stockError.map((stockError, idx) => (
-            <li key={idx}>{stockError}</li>
-          ))}
+          <div className="cartBtnContainer">
+            <Link id="purpleLinkBtn" to="/mugs">
+              Continue shopping?{' '}
+            </Link>
+            <button id="tealBtn" type="button" onClick={this.onCheckout}>
+              Checkout
+            </button>
+            {this.state.stockError.map((stockError, idx) => (
+              <li key={idx}>{stockError}</li>
+            ))}
           </div>
         </>
       )
