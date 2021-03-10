@@ -6,7 +6,7 @@ import MugForm from './MugForm'
 const defaultState = {
   name: '',
   description: '',
-  imageUrl: 'https://dummyimage.com/300x300/000/fff',
+  imageUrl: '../../images/defaultMugImage.jpg',
   price: 0,
   color: '',
   size: 0,

@@ -251,31 +251,6 @@ async function seed() {
     }
   ]
 
-  //assign orders to mugs
-  //await mugs[2].setOrders(orders[1])
-  //await mugs[1].setOrders(orders.slice(2,4))
-  //await mugs[2].setOrders(orders.slice(4,6))
-  //await mugs[3].setOrders(orders.slice(6,8))
-  //await mugs[4].setOrders(orders.slice(8,12))
-  //await mugs[5].setOrders(orders.slice(12,14))
-  //await mugs[6].setOrders(orders.slice(14,16))
-  //await mugs[7].setOrders(orders.slice(16,17))
-
-  //assign mugs to orders
-  //await orders[0].setMugs(mugs.slice(0,2))
-  //await orders[1].setMugs(mugs.slice(2,4))
-  //await orders[2].setMugs(mugs.slice(4,6))
-  //await orders[3].addMugs(mugs.slice(6,8))
-  //await orders[4].addMugs(mugs.slice(8,10))
-  //await orders[5].addMugs(mugs.slice(10,12))
-
-  /* const mugOrders = await MugOrder.findAll()
-  for (let i = 0; i < mugOrders.length; i++) {
-    await mugOrders[i].update({
-      quantity: Math.floor(Math.random() * 20),
-    })
-  } */
-
   //bulk create MugOrders
   await MugOrder.bulkCreate(mugOrders)
   console.log('Seeded MugOrders')

@@ -64,7 +64,6 @@ class Cart extends Component {
       return (
         <div className="pageContainer">
           <div className="emptyCartView">
-            {/* <img src="../../public/images/empty-cart.png" alt="sad mug" /> */}
             <h3>Oh no! Your cart is currently empty :(</h3>
             <Link id="purpleLinkBtn" to="/mugs">
               {' '}

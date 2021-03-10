@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchMugs} from '../store/mug'
 import {Link} from 'react-router-dom'
-import {AllMugs} from '.'
 
 class AdminMugView extends Component {
   constructor() {
@@ -16,13 +15,6 @@ class AdminMugView extends Component {
     return (number / 100).toFixed(2)
   }
   render() {
-    /*     if (this.props.mugs === undefined) {
-      return (
-        <div className="pageContainer">
-          <h2>Loading...</h2>
-        </div>
-      )
-    } */
     const mugs = this.props.mugs || []
     if (mugs.length === 0) {
       return <div>Loading...</div>

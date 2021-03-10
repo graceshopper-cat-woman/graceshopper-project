@@ -8,7 +8,6 @@ import {
   AllMugs,
   SingleMug,
   Landing,
-  AdminView,
   AddMug,
   AdminModifyMug,
   Cart,
@@ -62,7 +61,6 @@ class Routes extends Component {
             />
             {isAdmin ? (
               <Switch>
-                <Route exact path="/admin" component={AdminView} />
                 <Route exact path="/admin/add" component={AddMug} />
                 <Route exact path="/admin/users" component={AdminUserView} />
                 <Route exact path="/admin/mugs" component={AdminMugView} />
