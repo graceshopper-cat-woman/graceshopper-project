@@ -148,7 +148,7 @@ router.put('/delete', async (req, res, next) => {
     })
 
     await item.destroy()
-    res.sendStatus(204).json(itemId)
+    res.status(200).json(itemId)
   } catch (error) {
     next(error)
   }

@@ -24,22 +24,24 @@ body {
 }
 a {
   text-decoration: none;
+  color: #657e88;
+  font-weight: 500;
 }
 
 button {
-  background-color: #657e88;
+  background-color: transparent;
   border-radius: 10px;
-  border: solid 1px;
-  color: #dbd8dd;
+  border: solid 2px #657e88;
+  color: #657e88;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   padding: 11px 20px 11px 20px;
 }
 
 button:hover,
-:focus {
-  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-  transform: translateY(-0.25em);
+button:focus {
+  background-color: #657e88;
+  color: #dbd8dd;
   cursor: pointer;
 }
 nav {
@@ -60,11 +62,18 @@ nav a {
   text-decoration: none;
   flex-direction: row;
   justify-content: space-around;
+  text-decoration: none;
+  align-items: center;
   color: #dbd8dd;
   font-size: 18px;
   padding: 0px 15px;
+  margin-right: 5px;
 }
-
+nav a:hover,
+nav a:focus {
+  cursor: pointer;
+  font-weight: 500;
+}
 .navLeft {
   display: flex;
   margin-left: 10px;
@@ -153,27 +162,18 @@ nav a {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
-  padding: 8px;
+  padding: 10px;
   margin: 10px;
   width: 100%;
   font-family: 'Montserrat' sans-serif;
   font-size: 18px;
 }
 .signup input {
+  display: flex;
+  align-items: center;
   line-height: 22px;
   margin: 4px;
   background-color: #dbd8dd;
-  border: none;
-}
-#signUpBtn {
-  display: flex;
-  background-color: #53465d;
-  margin-top: 20px;
-  width: 100%;
-  font-weight: 500;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   border: none;
 }
 
@@ -189,11 +189,11 @@ h2 {
   flex-direction: column nowrap;
   justify-content: space-around;
   width: 325px;
-  height: 350px;
+  height: 340px;
   margin-top: 20px;
   margin-left: 10%;
   margin-right: 10%;
-  padding: 10px;
+  padding: 14px;
   background-color: #657e88;
   color: #dbd8dd;
   box-shadow: 3px 3px 4px 3px rgba(48, 48, 49, 0.733);
@@ -207,25 +207,50 @@ h2 {
 }
 .signIn input {
   display: flex;
+  align-items: center;
   flex-flow: column nowrap;
-  line-height: 22px;
+  line-height: 26px;
   width: 90%;
   margin: 10px;
   background-color: #dbd8dd;
   border: none;
 }
-
-#authBtn a {
-  text-decoration: none;
+#purpleBtn {
   display: flex;
-  background-color: #53465d;
-  margin-top: 20px;
-  font-weight: 500;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  border: none;
+  font-family: 'Montserrat' sans-serif;
+  font-size: 15px;
+  width: 98%;
+  margin: 3px;
+  margin-top: 7px;
+  background-color: #53465d;
+  color: #dbd8dd;
+  font-weight: 500;
+  opacity: 0.8;
 }
+#purpleBtn:hover,
+#purpleBtn:focus {
+  opacity: 1;
+  color: #dbd8dd;
+}
+
+#purpleLinkBtn {
+  padding: 15px;
+  opacity: 0.8;
+  color: #dbd8dd;
+  background-color: #53465d;
+  border-radius: 10px;
+}
+#tealLinkBtn:hover,
+#tealLinkBtn:focus,
+#purpleLinkBtn:hover,
+#purpleLinkBtn:focus {
+  opacity: 1;
+  color: #dbd8dd;
+}
+
 .productPhoto img {
   width: 192;
   height: 192;
@@ -341,8 +366,10 @@ h2 {
 }
 
 .singleProductImage img {
+  display: flex;
   border-radius: 10%;
   box-shadow: 5px 5px 30px 0px #a8a7a8;
+  align-items: center;
 }
 
 .singleProductDescription {
@@ -368,6 +395,8 @@ h2 {
 
 #productPhoto {
   display: flex;
+  align-items: center;
+  margin: auto;
   width: 200px;
   height: 200px;
   margin-top: 20px;
@@ -437,13 +466,21 @@ h2 {
 }
 #minus,
 #plus {
-  margin: 10px;
+  margin: 8px;
   padding: 0;
   color: #657e88;
+}
+#iconContainer {
+  display: flex;
+  align-items: baseline;
+}
+#iconContainer:hover {
+  cursor: pointer;
 }
 #trash {
   color: rgb(131, 24, 47);
   width: 20px;
+  margin: 8px;
   height: 20px;
 }
 #cartItemImg {
@@ -461,13 +498,22 @@ h2 {
   justify-content: center;
   align-items: baseline;
 }
+.cartBtnContainer {
+  display: flex;
+  padding: 0;
+  margin-left: 20%;
+  margin-right: 20%;
+  flex-flow: row nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+}
 .cartViewTotal {
   display: flex;
   font-weight: bold;
   font-size: 18px;
   margin-left: 20%;
   margin-right: 20%;
-  padding-top: 25px;
+  padding-top: 20px;
 }
 
 #continue {
@@ -485,7 +531,7 @@ h2 {
   text-align: center;
   border: none;
 }
-.singleProductContainerADMIN {
+#checkout .singleProductContainerADMIN {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

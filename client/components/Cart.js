@@ -67,7 +67,10 @@ class Cart extends Component {
           <div className="emptyCartView">
             {/* <img src="../../public/images/empty-cart.png" alt="sad mug" /> */}
             <h3>Oh no! Your cart is currently empty :(</h3>
-            <Link to="/mugs"> Find your perfect mug </Link>
+            <Link id="purpleLinkBtn" to="/mugs">
+              {' '}
+              Find your perfect mug{' '}
+            </Link>
           </div>
         </div>
       )
@@ -95,15 +98,17 @@ class Cart extends Component {
           <p className="cartViewTotal">
             Total: ${this.totalPrice(cart.mugs).toFixed(2)}
           </p>
-          <Link className="cartViewTotal" id="continue" to="/mugs">
+           <div className="cartBtnContainer">
+               <Link id="purpleLinkBtn" to="/mugs">
             Continue shopping?{' '}
-          </Link>
-          <button type="button" onClick={this.onCheckout}>
+                </Link>
+          <button id="tealBtn" type="button" onClick={this.onCheckout}>
             Checkout
           </button>
           {this.state.stockError.map((stockError, idx) => (
             <li key={idx}>{stockError}</li>
           ))}
+          </div>
         </>
       )
     }
