@@ -8,19 +8,23 @@ class OrderConfirmation extends React.Component {
     const cart = this.props.cart
 
     return (
-      <div>
-        <h1>
-          {user.firstName && cart.number
-            ? `Thank you for shopping with us, ${user.firstName}!`
-            : `Thank you for shopping with us!`}
-        </h1>
-        <h1>{`Thank you for shopping with us! Your order number is ${
-          cart.items.number
-        }`}</h1>
+      <div className="pageContainer">
+        <div className="emptyCartView">
+          <h1>
+            {user.firstName
+              ? `Thank you for shopping with us, ${user.firstName}!`
+              : `Thank you for shopping with us!`}
+          </h1>
+          <h1>
+            {cart.items.number
+              ? `Your order number is ${cart.items.number}`
+              : ``}
+          </h1>
 
-        <Link className="cartViewTotal" id="continue" to="/mugs">
-          Continue shopping?{' '}
-        </Link>
+          <Link className="cartViewTotal" id="continue" to="/mugs">
+            Continue shopping?{' '}
+          </Link>
+        </div>
       </div>
     )
   }
