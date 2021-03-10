@@ -28,15 +28,17 @@ class OrderHistory extends Component {
     } else {
       return (
         <div>
-          <h1>Your Orders</h1>
-          {orders.map(order => (
-            <div key={order.id}>
-              <p>Order Number: {order.number}</p>
-              <p>Date: {order.createdAt.slice(0, 10)} </p>
-              <p>Status: {order.orderStatus}</p>
-              <br />
-            </div>
-          ))}
+          <div className="orderHistory">
+            <h1>Your Orders</h1>
+            {orders.map(order => (
+              <div key={order.id}>
+                <p>Order Number: {order.number}</p>
+                <p>Date: {order.createdAt.slice(0, 10)} </p>
+                <p>Status: {order.orderStatus}</p>
+                <br />
+              </div>
+            ))}
+          </div>
         </div>
       )
     }

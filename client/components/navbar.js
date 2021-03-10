@@ -85,9 +85,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(
-
-())
+      dispatch(logout())
     },
     loadUser: userId => dispatch(fetchLoggedInUser(userId))
   }
