@@ -26,14 +26,13 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => {
                   <Link to={`/orders/user/${user.id}`}> Order History </Link>
                 </div>
               </div>
-
               <Link to="/home">Home</Link>
               <Link to="/mugs"> View All </Link>
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
               {isAdmin ? (
-                <div className="dropdown">
+                <div className="dropdown admin">
                   Admin Options
                   <div className="dropdown-content">
                     <Link to="/admin/mugs"> View Mugs </Link>
