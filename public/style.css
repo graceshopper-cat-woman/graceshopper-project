@@ -420,6 +420,14 @@ h2 {
   justify-content: center;
   align-items: center;
 }
+.orderHistory {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 10%;
+}
+
 .emptyCartView a {
   background-color: #5f506b;
   text-decoration: none;
@@ -430,6 +438,7 @@ h2 {
   margin-right: 10%;
   margin-left: 10%;
 }
+
 .cartViewHeaders {
   display: flex;
   flex-flow: row nowrap;
