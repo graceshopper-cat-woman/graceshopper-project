@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const GET_LOGGED_IN_USER = 'GET_LOGGED_IN_USER'
 
 /**
  * INITIAL STATE
@@ -16,6 +17,7 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+const getLoggedInUser = user => ({type: GET_LOGGED_IN_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -27,6 +29,15 @@ export const me = () => async dispatch => {
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const fetchLoggedInUser = userId => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/${userId}/orders`)
+    dispatch(getLoggedInUser(data))
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -70,6 +81,8 @@ export default function userReducer(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case GET_LOGGED_IN_USER:
+      return action.user
     default:
       return state
   }

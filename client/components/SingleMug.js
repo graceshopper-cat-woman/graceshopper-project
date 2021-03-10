@@ -11,7 +11,8 @@ class SingleMug extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.state = {
       quantity: 1,
-      added: false
+      added: false,
+      inventoryErr: ''
     }
   }
   componentDidMount() {
@@ -26,13 +27,18 @@ class SingleMug extends Component {
     })
   }
   handleSubmit(evt) {
+    this.setState({inventoryErr: ''})
     evt.preventDefault()
-    this.props.addToCart(
-      this.state.quantity,
-      +this.props.match.params.mugId,
-      this.props.mug.price
-    )
-    this.setState({quantity: 1, added: true})
+    if (this.state.quantity > this.props.mug.inventory) {
+      this.setState({inventoryErr: 'Sorry, not enough in stock!'})
+    } else {
+      this.props.addToCart(
+        this.state.quantity,
+        +this.props.match.params.mugId,
+        this.props.mug.price
+      )
+      this.setState({quantity: 1, added: true})
+    }
   }
   render() {
     const mug = this.props.mug || {}
@@ -50,6 +56,7 @@ class SingleMug extends Component {
             <p className="singleProductStyle">{mug.description}</p>
             <p className="singleProductStyle">Size: {mug.size} oz.</p>
             <p className="singleProductStyle">${this.setPrice(mug.price)}</p>
+            <p className="singleProductStyle">{mug.inventory} left in stock!</p>
             <form className="singleProductStyle" onSubmit={this.handleSubmit}>
               <label className="singleProductStyle" htmlFor="quantity">
                 Quantity:
@@ -65,6 +72,7 @@ class SingleMug extends Component {
               />
               <button type="submit">Add To Cart</button>
             </form>
+            {this.state.inventoryErr}
             {this.state.added ? <p>Added to cart!</p> : ''}
           </div>
         </div>

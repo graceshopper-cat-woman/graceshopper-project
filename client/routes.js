@@ -16,7 +16,8 @@ import {
   AdminUserView,
   AdminMugView,
   Checkout,
-  OrderConfirmation
+  OrderConfirmation,
+  OrderHistory
 } from './components'
 import {me} from './store'
 
@@ -52,6 +53,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route exact path="/orders/user/:userId" component={OrderHistory} />
             <Route exact path="/mugs" component={AllMugs} />
             <Route exact path="/mugs/:mugId" component={SingleMug} />
             <Route exact path="/carts" component={Cart} />
