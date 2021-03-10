@@ -179,6 +179,16 @@ async function seed() {
   const users = await User.bulkCreate(generateUsers(6))
   console.log('Seeded Users')
 
+  //create sample admin
+  const admin = await User.create({
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: 'admin@admin.com',
+    password: '12345',
+    isAdmin: true
+  })
+  console.log('Seeded admin')
+
   //assign orders to users
   await users[0].setOrders(orders.slice(0, 2))
   await users[1].setOrders(orders.slice(2, 4))
