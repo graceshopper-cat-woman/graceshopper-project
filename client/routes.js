@@ -15,7 +15,6 @@ import {
   Signup,
   AdminUserView,
   AdminMugView,
-  Checkout,
   OrderConfirmation,
   OrderHistory
 } from './components'
@@ -43,7 +42,6 @@ class Routes extends Component {
         <Route exact path="/mugs" component={AllMugs} />
         <Route exact path="/mugs/:mugId" component={SingleMug} />
         <Route exact path="/carts" component={Cart} />
-        <Route exact path="/carts/checkout" component={Checkout} />
         <Route
           exact
           path="/carts/order/confirmation"
@@ -57,7 +55,6 @@ class Routes extends Component {
             <Route exact path="/mugs" component={AllMugs} />
             <Route exact path="/mugs/:mugId" component={SingleMug} />
             <Route exact path="/carts" component={Cart} />
-            <Route exact path="/carts/checkout" component={Checkout} />
             <Route
               exact
               path="/carts/order/confirmation"

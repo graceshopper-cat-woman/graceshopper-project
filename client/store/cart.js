@@ -46,7 +46,6 @@ export const addToCart = (quantity, mugId, mugPrice) => {
         mugId: mugId,
         mugPrice: mugPrice
       })
-      console.log(data)
       dispatch(_addToCart(data))
     } catch (error) {
       console.log(error)
@@ -93,7 +92,6 @@ export const checkout = cart => {
   return async dispatch => {
     try {
       const {data} = await axios.put('/api/carts/checkout', {order: cart})
-      console.log(data)
       dispatch(_checkout(data))
     } catch (error) {
       console.log(error)

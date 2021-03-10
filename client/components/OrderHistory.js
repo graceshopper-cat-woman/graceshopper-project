@@ -16,7 +16,6 @@ class OrderHistory extends Component {
   render() {
     const orders = this.props.orders || []
     const loading = this.state.isLoading
-    console.log('ORDER PROPS', this.props.orders)
     if (loading) {
       return (
         <div className="pageContainer">
