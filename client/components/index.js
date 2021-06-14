@@ -9,6 +9,7 @@ export {Login, Signup} from './auth-form'
 export {default as AllMugs} from './AllMugs'
 export {default as SingleMug} from './SingleMug'
 export {Landing} from './Landing'
+export {SearchBar} from './SearchBar'
 
 export {default as AddMug} from './AddMug'
 export {MugForm} from './MugForm'

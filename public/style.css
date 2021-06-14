@@ -264,8 +264,18 @@ h2 {
   height: 192;
 }
 
+.searchBar {
+  width: 15rem;
+  background: #f2f1f9;
+  border: none;
+  padding: 0.5rem;
+  align-self: flex-end;
+  margin-right: 20px;
+}
+
 .pageContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
